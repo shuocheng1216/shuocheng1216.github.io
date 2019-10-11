@@ -6,19 +6,20 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <link rel="dns-prefetch" href="http://yoursite.com">
-  <title>Archives: 2019/10 | 硕硕的博客</title>
+  <title>Advance C++ const | 硕硕的博客</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="个人技术博客">
+  <meta name="description" content="什么是constconst 是 constant 的缩写，本意是不变的，不易改变的意思。cons关键字允许程序员告诉编译器某值在编译阶段是保持不变的。如果在编程中确实有某个值保持不变，就应该明确使用const，这样可以获得编译器的帮助。">
 <meta name="keywords" content="无人驾驶，机器人，C++，Python，ROS，控制理论">
-<meta property="og:type" content="website">
-<meta property="og:title" content="硕硕的博客">
-<meta property="og:url" content="http://yoursite.com/archives/2019/10/index.html">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Advance C++ const">
+<meta property="og:url" content="http://yoursite.com/2019/10/11/第二篇/index.html">
 <meta property="og:site_name" content="硕硕的博客">
-<meta property="og:description" content="个人技术博客">
+<meta property="og:description" content="什么是constconst 是 constant 的缩写，本意是不变的，不易改变的意思。cons关键字允许程序员告诉编译器某值在编译阶段是保持不变的。如果在编程中确实有某个值保持不变，就应该明确使用const，这样可以获得编译器的帮助。">
 <meta property="og:locale" content="en">
+<meta property="og:updated_time" content="2019-10-11T20:18:08.122Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="硕硕的博客">
-<meta name="twitter:description" content="个人技术博客">
+<meta name="twitter:title" content="Advance C++ const">
+<meta name="twitter:description" content="什么是constconst 是 constant 的缩写，本意是不变的，不易改变的意思。cons关键字允许程序员告诉编译器某值在编译阶段是保持不变的。如果在编程中确实有某个值保持不变，就应该明确使用const，这样可以获得编译器的帮助。">
   
     <link rel="alternative" href="/atom.xml" title="硕硕的博客" type="application/atom+xml">
   
@@ -174,113 +175,207 @@
           </div>
           <div id="js-content" class="content-ll">
             
+<article id="post-第二篇" class="article article-type-post " itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
   
+    <h1 class="article-title" itemprop="name">
+      Advance C++ const
+    </h1>
   
-    
-    
-      
-      
-      <section class="archives-wrap">
-        <div class="archive-year-wrap">
-          <a href="/archives/2019" class="archive-year">2019</a>
-        </div>
-        <div class="archives">
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2019/10/11/第二篇/" class="archive-article-date">
+
+        
+        <a href="/2019/10/11/第二篇/" class="archive-article-date">
   	<time datetime="2019-10-11T18:06:14.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-10-11</time>
 </a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2019/10/11/第二篇/">Advance C++ const</a>
-    </h1>
-  
+        
 
-        <div class="article-info info-on-right">
-          
-          
 
+
+	
+          <span class="archive-article-date">
+              阅读量 <span id="busuanzi_value_page_pv"></span>
+          </span>
+        
+
+
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="什么是const"><a href="#什么是const" class="headerlink" title="什么是const"></a>什么是const</h1><p>const 是 constant 的缩写，本意是不变的，不易改变的意思。cons关键字允许程序员告诉编译器某值在编译阶段是保持不变的。如果在编程中确实有某个值保持不变，就应该明确使用const，这样可以获得编译器的帮助。</p>
+<a id="more"></a>
+<p>例子：</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span>&#123;</span><br><span class="line">    <span class="keyword">const</span> <span class="keyword">int</span> i=<span class="number">9</span>;</span><br><span class="line">    i=<span class="number">6</span>;<span class="comment">//error</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>这里i是const的，所以不能对i进行赋值。<br>再看一个例子：</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span>&#123;</span><br><span class="line">    <span class="keyword">int</span> i=<span class="number">9</span>;</span><br><span class="line">	<span class="keyword">const</span> <span class="keyword">int</span> *p1=&amp;i;</span><br><span class="line">	*p1=<span class="number">5</span>;<span class="comment">//error</span></span><br><span class="line">    p++；<span class="comment">//can compile</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>在这个例子里，const告诉编译器p1指向的内容是不能变的，但是p1自身是可以变的。</p>
+<p>下个例子：</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span>&#123;</span><br><span class="line">    <span class="keyword">int</span> i=<span class="number">9</span>;</span><br><span class="line">	<span class="keyword">int</span>* <span class="keyword">const</span> p1=&amp;i;</span><br><span class="line">	*p1=<span class="number">5</span>;<span class="comment">//can compile</span></span><br><span class="line">    p++；<span class="comment">//error</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>在这个例子中，指针p1是const的，p1指向的内容不是const的，可以进行赋值。<br>记忆小窍门：如果const在*左边，数据是const的，如果在右边，则指针是const的。</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span>&#123;</span><br><span class="line">    <span class="keyword">int</span> i=<span class="number">9</span>;</span><br><span class="line">	<span class="keyword">const</span> <span class="keyword">int</span>* <span class="keyword">const</span> p1=&amp;i;</span><br><span class="line">	*p1=<span class="number">5</span>;<span class="comment">//error</span></span><br><span class="line">    p++；<span class="comment">//error</span></span><br><span class="line">    <span class="keyword">int</span> <span class="keyword">const</span> *p2=&amp;i;<span class="comment">//这两者等价</span></span><br><span class="line">    <span class="keyword">const</span> <span class="keyword">int</span> *p2=&amp;i;<span class="comment">//</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>我们都知道，在C++里有类型转换，假如说在某个时刻，你想修改一个const变量，可以做到吗？这时候我们可以使用const_cast类型转换操作符来帮你</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span>&#123;</span><br><span class="line">    <span class="keyword">const</span> <span class="keyword">int</span> i=<span class="number">9</span>;<span class="comment">//此时不能对i进行赋值</span></span><br><span class="line">    <span class="keyword">const_cast</span>&lt;<span class="keyword">int</span>&amp;&gt;(i)=<span class="number">5</span>;<span class="comment">//这个时候就可以赋值了</span></span><br><span class="line">    <span class="comment">//同样我们也可以把一个非常量转换成一个常量</span></span><br><span class="line">    <span class="keyword">int</span> j;</span><br><span class="line">    <span class="keyword">static_cast</span>&lt;<span class="keyword">int</span>&amp;&gt;(j)=<span class="number">5</span>;<span class="comment">//error,j变成了常量</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>但是在使用const_cast时要注意，因为这打破了某人的承诺，也就是这个值不能被修改。</p>
+<h1 id="为什么要使用const"><a href="#为什么要使用const" class="headerlink" title="为什么要使用const"></a>为什么要使用const</h1><p>1.首先能防止不经意间对某个值修改，提高安全性</p>
+<p>2.提高代码的可读性和可维护性，读者一看到const，就能明白作者的意图</p>
+<p>3.可以告诉编译器做相应的优化，提高程序的效率</p>
+<p>4.const意味着变量可以放在ROM中，这在嵌入式编程中特别有用</p>
+
+      
+
+      
+        <div class="page-reward">
+          <a href="javascript:;" class="page-reward-btn tooltip-top">
+            <div class="tooltip tooltip-east">
+            <span class="tooltip-item">
+              赏
+            </span>
+            <span class="tooltip-content">
+              <span class="tooltip-text">
+                <span class="tooltip-inner">
+                  <p class="reward-p"><i class="icon icon-quo-left"></i>谢谢你请我吃糖果<i class="icon icon-quo-right"></i></p>
+                  <div class="reward-box">
+                    
+                    
+                    <div class="reward-box-item">
+                      <img class="reward-img" src="/assets/img/weixin.jpg">
+                      <span class="reward-type">微信</span>
+                    </div>
+                    
+                  </div>
+                </span>
+              </span>
+            </span>
+          </div>
+          </a>
         </div>
-        <div class="clearfix"></div>
-    </header>
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+      
+
+      
+
+      
+        
+<div class="share-btn share-icons tooltip-left">
+  <div class="tooltip tooltip-east">
+    <span class="tooltip-item">
+      <a href="javascript:;" class="share-sns share-outer">
+        <i class="icon icon-share"></i>
+      </a>
+    </span>
+    <span class="tooltip-content">
+      <div class="share-wrap">
+        <div class="share-icons">
+          <a class="weibo share-sns" href="javascript:;" data-type="weibo">
+            <i class="icon icon-weibo"></i>
+          </a>
+          <a class="weixin share-sns wxFab" href="javascript:;" data-type="weixin">
+            <i class="icon icon-weixin"></i>
+          </a>
+          <a class="qq share-sns" href="javascript:;" data-type="qq">
+            <i class="icon icon-qq"></i>
+          </a>
+          <a class="douban share-sns" href="javascript:;" data-type="douban">
+            <i class="icon icon-douban"></i>
+          </a>
+          <a class="qzone share-sns" href="javascript:;" data-type="qzone">
+            <i class="icon icon-qzone"></i>
+          </a>
+          <a class="facebook share-sns" href="javascript:;" data-type="facebook">
+            <i class="icon icon-facebook"></i>
+          </a>
+          <a class="twitter share-sns" href="javascript:;" data-type="twitter">
+            <i class="icon icon-twitter"></i>
+          </a>
+          <a class="google share-sns" href="javascript:;" data-type="google">
+            <i class="icon icon-google"></i>
+          </a>
+        </div>
+      </div>
+    </span>
+  </div>
+</div>
+
+<div class="page-modal wx-share js-wx-box">
+    <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <div class="wx-qrcode">
+      <img src="//api.qrserver.com/v1/create-qr-code/?size=150x150&data=https://shuocheng1216.github.io/2019/10/11/第二篇/" alt="微信分享二维码">
+    </div>
+</div>
+
+<div class="mask js-mask"></div>
+      
+      <div class="clearfix"></div>
+    </div>
   </div>
 </article>
+
   
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2019/10/10/我的第一篇博客文章/" class="archive-article-date">
-  	<time datetime="2019-10-10T16:04:20.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-10-10</time>
-</a>
+<nav id="article-nav">
+  
+  
+    <a href="/2019/10/10/我的第一篇博客文章/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">Advance C++:参数依赖查找 Koenig lookup</div>
+      <i class="icon-circle-right"></i>
+    </a>
+  
+</nav>
+
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
         </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2019/10/10/我的第一篇博客文章/">Advance C++:参数依赖查找 Koenig lookup</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-          
-
+        
+        
+        <div class="toc-container tooltip-left">
+            <i class="icon-font icon-category"></i>
+            <div class="tooltip tooltip-east">
+                <span class="tooltip-item">
+                </span>
+                <span class="tooltip-content">
+                    <div class="toc-article">
+                    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#什么是const"><span class="toc-number">1.</span> <span class="toc-text">什么是const</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#为什么要使用const"><span class="toc-number">2.</span> <span class="toc-text">为什么要使用const</span></a></li></ol>
+                    </div>
+                </span>
+            </div>
         </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
+        
+    </div>
+</aside>
+
+
+
   
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2019/10/10/hello-world/" class="archive-article-date">
-  	<time datetime="2019-10-10T15:55:59.209Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-10-10</time>
-</a>
-        </div>
-    	 
   
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2019/10/10/hello-world/">Hello World</a>
-    </h1>
   
 
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">随笔</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-  
-    </div></section>
   
 
-    
+  
+
+  
 
 
           </div>
@@ -315,8 +410,8 @@
 	var yiliaConfig = {
 		mathjax: false,
 		isHome: false,
-		isPost: false,
-		isArchive: true,
+		isPost: true,
+		isArchive: false,
 		isTag: false,
 		isCategory: false,
 		open_in_new: false,
