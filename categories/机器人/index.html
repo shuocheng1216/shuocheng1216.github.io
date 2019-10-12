@@ -6,20 +6,19 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <link rel="dns-prefetch" href="http://yoursite.com">
-  <title>Advance C++:参数依赖查找 Koenig lookup | 硕硕的博客</title>
+  <title>Category: 机器人 | 硕硕的博客</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="什么是参数依赖查找在没有显式名称空间限定符的情况下调用函数时，如果该函数的某个参数类型也在该名称空间中，则编译器可以选择在名称空间中调用函数。">
+  <meta name="description" content="个人技术博客">
 <meta name="keywords" content="无人驾驶，机器人，C++，Python，ROS，控制理论">
-<meta property="og:type" content="article">
-<meta property="og:title" content="Advance C++:参数依赖查找 Koenig lookup">
-<meta property="og:url" content="http://yoursite.com/2019/10/10/我的第一篇博客文章/index.html">
+<meta property="og:type" content="website">
+<meta property="og:title" content="硕硕的博客">
+<meta property="og:url" content="http://yoursite.com/categories/机器人/index.html">
 <meta property="og:site_name" content="硕硕的博客">
-<meta property="og:description" content="什么是参数依赖查找在没有显式名称空间限定符的情况下调用函数时，如果该函数的某个参数类型也在该名称空间中，则编译器可以选择在名称空间中调用函数。">
+<meta property="og:description" content="个人技术博客">
 <meta property="og:locale" content="en">
-<meta property="og:updated_time" content="2019-10-11T20:33:33.177Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Advance C++:参数依赖查找 Koenig lookup">
-<meta name="twitter:description" content="什么是参数依赖查找在没有显式名称空间限定符的情况下调用函数时，如果该函数的某个参数类型也在该名称空间中，则编译器可以选择在名称空间中调用函数。">
+<meta name="twitter:title" content="硕硕的博客">
+<meta name="twitter:description" content="个人技术博客">
   
     <link rel="alternative" href="/atom.xml" title="硕硕的博客" type="application/atom+xml">
   
@@ -181,238 +180,59 @@
           </div>
           <div id="js-content" class="content-ll">
             
-    <i class="fa fa-thumb-tack"></i>
-    <font color=7D26CD>置顶</font>
-    <span class="post-meta-divider">|</span>
   
-<article id="post-我的第一篇博客文章" class="article article-type-post " itemscope itemprop="blogPost">
-  <div class="article-inner">
+  
     
-      <header class="article-header">
-        
+    
+      
+      
+      <section class="archives-wrap">
+        <div class="archive-year-wrap">
+          <a href="/archives/2019" class="archive-year">2019</a>
+        </div>
+        <div class="archives">
+    
+    <article class="archive-article archive-type-post">
+  <div class="archive-article-inner">
+    <header class="archive-article-header">
+      	<div class="article-meta">
+	      	<a href="/2019/10/12/第三篇/" class="archive-article-date">
+  	<time datetime="2019-10-12T11:42:22.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-10-12</time>
+</a>
+        </div>
+    	 
   
-    <h1 class="article-title" itemprop="name">
-      Advance C++:参数依赖查找 Koenig lookup
+    <h1 itemprop="name">
+      <a class="archive-article-title" href="/2019/10/12/第三篇/">机器人局部避障的动态窗口法(DWA)</a>
     </h1>
   
 
-        
-        <a href="/2019/10/10/我的第一篇博客文章/" class="archive-article-date">
-  	<time datetime="2019-10-10T16:04:20.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-10-10</time>
-</a>
-        
-
-
-
-	
-          <span class="archive-article-date">
-              阅读量 <span id="busuanzi_value_page_pv"></span>
-          </span>
-        
-
-
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h1 id="什么是参数依赖查找"><a href="#什么是参数依赖查找" class="headerlink" title="什么是参数依赖查找"></a>什么是参数依赖查找</h1><p>在没有显式名称空间限定符的情况下调用函数时，如果该函数的某个参数类型也在该名称空间中，则编译器可以选择在名称空间中调用函数。</p>
-<a id="more"></a>
-<p>例如：</p>
-<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">namespace</span> A</span><br><span class="line">&#123;</span><br><span class="line">	<span class="class"><span class="keyword">struct</span> <span class="title">A</span>&#123;</span>&#125;;</span><br><span class="line">	<span class="function"><span class="keyword">void</span> <span class="title">g</span><span class="params">(x)</span></span>&#123;<span class="built_in">cout</span>&lt;&lt;<span class="string">"calling A::g()\n"</span>;&#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	A::A x1;</span><br><span class="line">	A::g(x1);<span class="comment">//可以正常编译</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>但是如果我们把g(x1)前面的名称空间限定符去掉呢？<br>结果是一样的。因为当编译器看到g()这个函数时，它不仅在当前scope和全局scope进行搜索，它还在函数参数被定义的范围内进行搜索，也就是在namespace A{}里找到了g(x)。这就称为Koenig Lookup，也被称为Argument Dependent Lookup(ADL)。</p>
-<p>如果我们加上一个全局函数</p>
-<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">namespace</span> A</span><br><span class="line">&#123;</span><br><span class="line">	<span class="class"><span class="keyword">struct</span> <span class="title">A</span>&#123;</span>&#125;;</span><br><span class="line">	<span class="function"><span class="keyword">void</span> <span class="title">g</span><span class="params">(x)</span></span>&#123;<span class="built_in">cout</span>&lt;&lt;<span class="string">"calling A::g()\n"</span>;&#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">g</span><span class="params">(x)</span></span>&#123;<span class="built_in">cout</span>&lt;&lt;<span class="string">"calling A::g()\n"</span>;&#125;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	A::A x1;</span><br><span class="line">	g(x1);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>这个时候就不能通过编译，因为现在在main函数中有两个g(x)可见，这就造成了歧义。</p>
-<p>#有一点需要注意，那就是Koenig Lookup只能作用于namespace。举个例子：</p>
-<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">C</span>&#123;</span></span><br><span class="line">	<span class="keyword">public</span>:</span><br><span class="line">	<span class="class"><span class="keyword">struct</span> <span class="title">Y</span>&#123;</span>&#125;;</span><br><span class="line">	<span class="function"><span class="keyword">static</span> <span class="keyword">void</span> <span class="title">h</span><span class="params">(Y)</span></span>&#123;<span class="built_in">cout</span>&lt;&lt;<span class="string">"calling C::h()\n"</span>;&#125;</span><br><span class="line">&#125;;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span>&#123;</span><br><span class="line">	C::Y y;</span><br><span class="line">	h(y);<span class="comment">//Error</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>这个程序将不能通过编译，因为Koenig Lookup不能作用于class。</p>
-<p>让我们再看一个例子</p>
-<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">namespace</span> A</span><br><span class="line">&#123;</span><br><span class="line">	<span class="class"><span class="keyword">struct</span> <span class="title">X</span>&#123;</span>&#125;;</span><br><span class="line">	<span class="function"><span class="keyword">void</span> <span class="title">g</span><span class="params">(X)</span></span>&#123;<span class="built_in">cout</span>&lt;&lt;<span class="string">"calling A::g()\n"</span>;&#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">namespace</span> C</span><br><span class="line">&#123;</span><br><span class="line">	<span class="function"><span class="keyword">void</span> <span class="title">g</span><span class="params">(A::X)</span></span>&#123;<span class="built_in">cout</span>&lt;&lt;<span class="string">"calling C::g()\n"</span>;&#125;</span><br><span class="line">	<span class="function"><span class="keyword">void</span> <span class="title">j</span><span class="params">()</span></span></span><br><span class="line"><span class="function">	</span>&#123;</span><br><span class="line">	   A::X x;</span><br><span class="line">	   g(x);</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span>&#123;</span><br><span class="line">	C::j();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>这个程序能也不能通过编译，因为g()产生了歧义，编译器不知道调用的是A里的还是C里的g()。但是当我们进行了一些修改，把namespace C改成class C：</p>
-<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">namespace</span> A</span><br><span class="line">&#123;</span><br><span class="line">	<span class="class"><span class="keyword">struct</span> <span class="title">X</span>&#123;</span>&#125;;</span><br><span class="line">	<span class="function"><span class="keyword">void</span> <span class="title">g</span><span class="params">(X)</span></span>&#123;<span class="built_in">cout</span>&lt;&lt;<span class="string">"calling A::g()\n"</span>;&#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">C</span></span></span><br><span class="line"><span class="class">&#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">	<span class="function"><span class="keyword">void</span> <span class="title">g</span><span class="params">(A::X)</span></span>&#123;<span class="built_in">cout</span>&lt;&lt;<span class="string">"calling C::g()\n"</span>;&#125;</span><br><span class="line">	<span class="function"><span class="keyword">void</span> <span class="title">j</span><span class="params">()</span></span></span><br><span class="line"><span class="function">	</span>&#123;</span><br><span class="line">	   A::X x;</span><br><span class="line">	   g(x);</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span>&#123;</span><br><span class="line">	C c;</span><br><span class="line">	c.j();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>这个时候程序就能通过编译，输出calling C::g()。为什么，因为当编译器搜索g()时，它首先在class C里进行搜索，如果找到了对应的函数，编译器会停止搜索，只有当g()在class C里没有被找到时，编译器才会继续在全局作用域进行Koenig Lookup。从这里就可以看出，class成员之间联系的更紧密。</p>
-<p>我们再进行一些修改：</p>
-<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">namespace</span> A</span><br><span class="line">&#123;</span><br><span class="line">  <span class="class"><span class="keyword">struct</span> <span class="title">X</span>&#123;</span>&#125;;</span><br><span class="line">  <span class="function"><span class="keyword">void</span> <span class="title">g</span><span class="params">(X)</span></span>&#123;<span class="built_in">cout</span>&lt;&lt;<span class="string">"calling A::g()\n"</span>;&#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">B</span></span></span><br><span class="line"><span class="class">&#123;</span></span><br><span class="line">  <span class="keyword">public</span>:</span><br><span class="line">  <span class="function"><span class="keyword">void</span> <span class="title">g</span><span class="params">(A::X)</span></span>&#123;<span class="built_in">cout</span>&lt;&lt;<span class="string">"calling B::g()\n"</span>;&#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">C</span>:</span><span class="keyword">public</span> B</span><br><span class="line">&#123;</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">  <span class="function"><span class="keyword">void</span> <span class="title">j</span><span class="params">()</span></span>&#123;</span><br><span class="line">	A::X x;</span><br><span class="line">	g(x);</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span>&#123;</span><br><span class="line">   C c;</span><br><span class="line">   c.j();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>这个程序可以通过编译，并输出calling B::g()。也就是说来自于parent的成员函数也具有比外部函数高的优先级。</p>
-
-      
-
-      
-        <div class="page-reward">
-          <a href="javascript:;" class="page-reward-btn tooltip-top">
-            <div class="tooltip tooltip-east">
-            <span class="tooltip-item">
-              赏
-            </span>
-            <span class="tooltip-content">
-              <span class="tooltip-text">
-                <span class="tooltip-inner">
-                  <p class="reward-p"><i class="icon icon-quo-left"></i>谢谢你请我吃糖果<i class="icon icon-quo-right"></i></p>
-                  <div class="reward-box">
-                    
-                    
-                    <div class="reward-box-item">
-                      <img class="reward-img" src="/assets/img/weixin.jpg">
-                      <span class="reward-type">微信</span>
-                    </div>
-                    
-                  </div>
-                </span>
-              </span>
-            </span>
-          </div>
-          </a>
-        </div>
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-        <div class="article-pop-out tagcloud">
-          <i class="icon-tuding"></i>
-          <a class="article-tag-list-link color3">置顶</a>
-        </div>
-      
-      
-      
+        <div class="article-info info-on-right">
+          
+          
 	<div class="article-category tagcloud">
 		<i class="icon-book icon"></i>
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="/categories/C//" class="article-tag-list-link color4">C++</a>
+        			<a href="/categories/机器人//" class="article-tag-list-link color4">机器人</a>
         		</li>
       		
 		</ul>
 	</div>
 
 
-      
-
-      
-        
-<div class="share-btn share-icons tooltip-left">
-  <div class="tooltip tooltip-east">
-    <span class="tooltip-item">
-      <a href="javascript:;" class="share-sns share-outer">
-        <i class="icon icon-share"></i>
-      </a>
-    </span>
-    <span class="tooltip-content">
-      <div class="share-wrap">
-        <div class="share-icons">
-          <a class="weibo share-sns" href="javascript:;" data-type="weibo">
-            <i class="icon icon-weibo"></i>
-          </a>
-          <a class="weixin share-sns wxFab" href="javascript:;" data-type="weixin">
-            <i class="icon icon-weixin"></i>
-          </a>
-          <a class="qq share-sns" href="javascript:;" data-type="qq">
-            <i class="icon icon-qq"></i>
-          </a>
-          <a class="douban share-sns" href="javascript:;" data-type="douban">
-            <i class="icon icon-douban"></i>
-          </a>
-          <a class="qzone share-sns" href="javascript:;" data-type="qzone">
-            <i class="icon icon-qzone"></i>
-          </a>
-          <a class="facebook share-sns" href="javascript:;" data-type="facebook">
-            <i class="icon icon-facebook"></i>
-          </a>
-          <a class="twitter share-sns" href="javascript:;" data-type="twitter">
-            <i class="icon icon-twitter"></i>
-          </a>
-          <a class="google share-sns" href="javascript:;" data-type="google">
-            <i class="icon icon-google"></i>
-          </a>
         </div>
-      </div>
-    </span>
-  </div>
-</div>
-
-<div class="page-modal wx-share js-wx-box">
-    <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
-    <p>扫一扫，分享到微信</p>
-    <div class="wx-qrcode">
-      <img src="//api.qrserver.com/v1/create-qr-code/?size=150x150&data=https://shuocheng1216.github.io/2019/10/10/我的第一篇博客文章/" alt="微信分享二维码">
-    </div>
-</div>
-
-<div class="mask js-mask"></div>
-      
-      <div class="clearfix"></div>
-    </div>
+        <div class="clearfix"></div>
+    </header>
   </div>
 </article>
-
-  
-<nav id="article-nav">
-  
-    <a href="/2019/10/11/第二篇/" id="article-nav-newer" class="article-nav-link-wrap">
-      <i class="icon-circle-left"></i>
-      <div class="article-nav-title">
-        
-          Advance C++:const
-        
-      </div>
-    </a>
   
   
-    <a href="/2019/10/10/hello-world/" id="article-nav-older" class="article-nav-link-wrap">
-      <div class="article-nav-title">Hello World</div>
-      <i class="icon-circle-right"></i>
-    </a>
-  
-</nav>
-
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-        <div class="toc-container tooltip-left">
-            <i class="icon-font icon-category"></i>
-            <div class="tooltip tooltip-east">
-                <span class="tooltip-item">
-                </span>
-                <span class="tooltip-content">
-                    <div class="toc-article">
-                    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#什么是参数依赖查找"><span class="toc-number">1.</span> <span class="toc-text">什么是参数依赖查找</span></a></li></ol>
-                    </div>
-                </span>
-            </div>
-        </div>
-        
-    </div>
-</aside>
-
-
-
-  
-  
+    </div></section>
   
 
-  
-
-  
-
-  
+    
 
 
           </div>
@@ -447,10 +267,10 @@
 	var yiliaConfig = {
 		mathjax: true,
 		isHome: false,
-		isPost: true,
+		isPost: false,
 		isArchive: false,
 		isTag: false,
-		isCategory: false,
+		isCategory: true,
 		open_in_new: false,
 		toc_hide_index: true,
 		root: "/",
