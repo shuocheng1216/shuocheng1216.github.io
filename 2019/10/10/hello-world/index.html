@@ -17,7 +17,7 @@
 <meta property="og:description" content="什么是RRTRRT算法全称Rapidly-exploring Random Tree，它是一种基于随机采样的路径规划方法，它能够快速地搜索整个状态空间，从而寻找一条从起始点到目标点的规划路径。">
 <meta property="og:locale" content="en">
 <meta property="og:image" content="http://yoursite.com/images/rrt.png">
-<meta property="og:updated_time" content="2019-10-13T18:25:17.928Z">
+<meta property="og:updated_time" content="2019-10-13T18:28:56.270Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="快速扩展随机树(RRT)算法">
 <meta name="twitter:description" content="什么是RRTRRT算法全称Rapidly-exploring Random Tree，它是一种基于随机采样的路径规划方法，它能够快速地搜索整个状态空间，从而寻找一条从起始点到目标点的规划路径。">
@@ -243,7 +243,9 @@
 <h3 id="2-1-优点"><a href="#2-1-优点" class="headerlink" title="2.1 优点"></a>2.1 优点</h3><ol>
 <li>快。因为RRT是随机采样，所以不需要对空间中所有的点都进行搜索</li>
 <li>不需要对障碍物空间进行精确建模。只需要知道新节点会不会撞到障碍物，而不关心障碍物的形状，大小，范围等</li>
-<li>在多维空间中更具优势。因为是随机采样，所以基本不受维度升高的影响<h3 id="2-2-缺点"><a href="#2-2-缺点" class="headerlink" title="2.2 缺点"></a>2.2 缺点</h3></li>
+<li>在多维空间中更具优势。因为是随机采样，所以基本不受维度升高的影响</li>
+</ol>
+<h3 id="2-2-缺点"><a href="#2-2-缺点" class="headerlink" title="2.2 缺点"></a>2.2 缺点</h3><ol>
 <li>难以在有狭窄通道的环境找到路径。因为是随机采样，所以碰到狭窄通道的几率低</li>
 <li>路径有很多冗余的节点，增加了路径的长度</li>
 </ol>
