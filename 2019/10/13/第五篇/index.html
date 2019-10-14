@@ -8,23 +8,24 @@
   <link rel="dns-prefetch" href="http://yoursite.com">
   <title>路径追踪之Pure Pursuit | 硕硕的博客</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="什么是pure pursuit(纯跟踪)算法无人驾驶车辆是一个复杂的结合系统，其中算法模块主要包含感知、定位、轨迹预测、行为决策、运动规划及反馈控制等。其中反馈控制包括横向控制和纵向控制两个部分，横向控制主要用于车辆方向盘的控制，纵向控制则主要负责车辆油门、刹车的控制，两者协同工作以使无人车按照预定的参考轨迹行驶。今天我们要讲的就是横向控制中的一种，叫pure pursuit纯跟踪算法。">
+  <meta name="description" content="什么是pure pursuit(纯追踪)算法无人驾驶车辆是一个复杂的结合系统，其中算法模块主要包含感知、定位、轨迹预测、行为决策、运动规划及反馈控制等。其中反馈控制包括横向控制和纵向控制两个部分，横向控制主要用于车辆方向盘的控制，纵向控制则主要负责车辆油门、刹车的控制，两者协同工作以使无人车按照预定的参考轨迹行驶。今天我们要讲的就是横向控制中的一种，叫pure pursuit纯追踪算法。">
 <meta name="keywords" content="无人驾驶，机器人，C++，Python，ROS，控制理论">
 <meta property="og:type" content="article">
 <meta property="og:title" content="路径追踪之Pure Pursuit">
 <meta property="og:url" content="http://yoursite.com/2019/10/13/第五篇/index.html">
 <meta property="og:site_name" content="硕硕的博客">
-<meta property="og:description" content="什么是pure pursuit(纯跟踪)算法无人驾驶车辆是一个复杂的结合系统，其中算法模块主要包含感知、定位、轨迹预测、行为决策、运动规划及反馈控制等。其中反馈控制包括横向控制和纵向控制两个部分，横向控制主要用于车辆方向盘的控制，纵向控制则主要负责车辆油门、刹车的控制，两者协同工作以使无人车按照预定的参考轨迹行驶。今天我们要讲的就是横向控制中的一种，叫pure pursuit纯跟踪算法。">
+<meta property="og:description" content="什么是pure pursuit(纯追踪)算法无人驾驶车辆是一个复杂的结合系统，其中算法模块主要包含感知、定位、轨迹预测、行为决策、运动规划及反馈控制等。其中反馈控制包括横向控制和纵向控制两个部分，横向控制主要用于车辆方向盘的控制，纵向控制则主要负责车辆油门、刹车的控制，两者协同工作以使无人车按照预定的参考轨迹行驶。今天我们要讲的就是横向控制中的一种，叫pure pursuit纯追踪算法。">
 <meta property="og:locale" content="en">
+<meta property="og:image" content="http://yoursite.com/images/bicycle.png">
 <meta property="og:image" content="http://yoursite.com/images/pure.png">
 <meta property="og:image" content="http://yoursite.com/images/pure3.png">
 <meta property="og:image" content="http://yoursite.com/images/pure1.png">
 <meta property="og:image" content="http://yoursite.com/images/pure2.png">
-<meta property="og:updated_time" content="2019-10-14T22:42:16.234Z">
+<meta property="og:updated_time" content="2019-10-14T22:48:53.948Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="路径追踪之Pure Pursuit">
-<meta name="twitter:description" content="什么是pure pursuit(纯跟踪)算法无人驾驶车辆是一个复杂的结合系统，其中算法模块主要包含感知、定位、轨迹预测、行为决策、运动规划及反馈控制等。其中反馈控制包括横向控制和纵向控制两个部分，横向控制主要用于车辆方向盘的控制，纵向控制则主要负责车辆油门、刹车的控制，两者协同工作以使无人车按照预定的参考轨迹行驶。今天我们要讲的就是横向控制中的一种，叫pure pursuit纯跟踪算法。">
-<meta name="twitter:image" content="http://yoursite.com/images/pure.png">
+<meta name="twitter:description" content="什么是pure pursuit(纯追踪)算法无人驾驶车辆是一个复杂的结合系统，其中算法模块主要包含感知、定位、轨迹预测、行为决策、运动规划及反馈控制等。其中反馈控制包括横向控制和纵向控制两个部分，横向控制主要用于车辆方向盘的控制，纵向控制则主要负责车辆油门、刹车的控制，两者协同工作以使无人车按照预定的参考轨迹行驶。今天我们要讲的就是横向控制中的一种，叫pure pursuit纯追踪算法。">
+<meta name="twitter:image" content="http://yoursite.com/images/bicycle.png">
   
     <link rel="alternative" href="/atom.xml" title="硕硕的博客" type="application/atom+xml">
   
@@ -221,11 +222,27 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h1 id="什么是pure-pursuit-纯跟踪-算法"><a href="#什么是pure-pursuit-纯跟踪-算法" class="headerlink" title="什么是pure pursuit(纯跟踪)算法"></a>什么是pure pursuit(纯跟踪)算法</h1><p>无人驾驶车辆是一个复杂的结合系统，其中算法模块主要包含感知、定位、轨迹预测、行为决策、运动规划及反馈控制等。其中反馈控制包括横向控制和纵向控制两个部分，横向控制主要用于车辆方向盘的控制，纵向控制则主要负责车辆油门、刹车的控制，两者协同工作以使无人车按照预定的参考轨迹行驶。今天我们要讲的就是横向控制中的一种，叫pure pursuit纯跟踪算法。</p>
+        <h1 id="什么是pure-pursuit-纯追踪-算法"><a href="#什么是pure-pursuit-纯追踪-算法" class="headerlink" title="什么是pure pursuit(纯追踪)算法"></a>什么是pure pursuit(纯追踪)算法</h1><p>无人驾驶车辆是一个复杂的结合系统，其中算法模块主要包含感知、定位、轨迹预测、行为决策、运动规划及反馈控制等。其中反馈控制包括横向控制和纵向控制两个部分，横向控制主要用于车辆方向盘的控制，纵向控制则主要负责车辆油门、刹车的控制，两者协同工作以使无人车按照预定的参考轨迹行驶。今天我们要讲的就是横向控制中的一种，叫pure pursuit纯追踪算法。</p>
 <a id="more"></a>
 <p>横向控制简单来说就是根据上层运动规划输出的路径、曲率等信息进行跟踪控制，以减少跟踪误差，同时保证车辆行驶的稳定性和舒适性，根据是否使用车辆模型，又可分为无模型的横向控制方法和基于模型的横向控制方法。pure pursuit纯跟踪算法属于基于模型的横向控制方法。传统的PID算法属于无模型横向控制，我后期会再写篇关于PID控制的文章。</p>
-<p>既然是基于模型的横向控制方法，首先要有模型，这里我们使用自行车模型<br>1<a href="/images/bicycle.png"></a><br>自行车模型是对阿克曼转向几何的简化，它将前面两个轮子组合成一个轮子，同样，也将后轮组合在一起。采用自行车模型的一大好处就在于它简化了前轮转向角与后轴将遵循的曲率之间的几何关系，由图可知，简化的几何关系可以写成：<br>$tan(\beta)=\frac{L}{R}$<br>其中$\delta$是前轮的转向角，$L$是前轴和后轴之间的距离，也就是轴距，$R$是在给定的转向角情况下后轮移动的转弯半径。这个公式能够在较低速度的场景下对车辆运动做估计。</p>
-<h2 id="pure-pursuit纯追踪算法"><a href="#pure-pursuit纯追踪算法" class="headerlink" title="pure pursuit纯追踪算法"></a>pure pursuit纯追踪算法</h2><p>纯追踪算法以及各种变形算法是移动机器人中最常用的路径追踪算法之一。从自行车模型出发,纯跟踪算法以车后轴为切点, 车辆纵向车身为切线, 通过控制前轮转角,使车辆可以沿着一条经过目标路点（goal point）的圆弧行驶，如下图所示：<br><img src="/images/pure.png" alt><br>图中($g_x,g_y$)是我们要追踪的下一个路径点，它位于路径规划层为我们规划好的路径上，我们需要控制车辆的前轮转角来使车辆的后轮经过该点。$l_d$表示车辆后轮到目标点的距离，$\alpha$表示车身姿态和目标点之间的夹角，根据正弦定理我们能得到：<br>$\frac{l_d}{sin(2\alpha)}=\frac{R}{sin(\frac{\pi}{2}-\alpha)}$<br>$\frac{l_d}{2sin(\alpha)cos(\alpha)}=\frac{R}{cos(\alpha)}$<br>$\frac{l_d}{sin(\alpha)}=2R$<br>如果用$\kappa$表示圆弧的曲率，那么$\kappa$可以表示为：<br>$\kappa=\frac{2sin\alpha}{l_d}$<br>由前面的转向角公式，我们可以得到:<br>$\delta=tan^{-1}(\kappa L)$<br>结合上面式子我们可以得到纯追踪算法控制量的的最终表达式：<br>$\delta (t)=tan^{-1}(\frac{2Lsin(\alpha(t))}{l_d})$<br>有了这个公式，那么当我们在某个时间点已知车身姿态和目标点之间的夹角$\alpha$,车身长度$L$以及车身后轮距离目标点的前视距离$l_d$时，我们就可以根据上面的公式算出前轮的转角$\delta$。<br>前面我们说过纯追踪算法是一种横向控制算法，当我们定义一个新的变量$e_{l_d}$:车辆当前姿态和目标路点在横向上的误差,我们可以得到：<br>$sin(\alpha)=\frac{e_{l_d}}{l_d}$<br>现在圆弧的曲率就可以表示为：<br>$\kappa=\frac{2}{l^2_d}e_{l_d}$<br>从这个式子我们就可以看出，纯追踪算法就是一种横向控制，其中系数P为$\frac{2}{l^2_d}$ ,这个P受参数$l_d$控制，所以如何调整前视距离变的很关键，实际中，$l_d$通常被认为是车速的函数，在不同的车速下需要选择不同的前视距离。一种最常见的调整前视距离的方法就是将前视距离表示成车辆纵向速度的线形函数，即$l_d=kv$，那么前轮的转角公式就变成了：<br>$\delta(t)=tan^{-1}(\frac{2Lsin(\alpha(t))}{kv_x(t)})$<br>现在我们只要调整系数k，就能控制车辆的前轮转向角，通常来说，会用一组最大，最小前视距离来约束前视距离，越大的前视距离意味着轨迹的追踪越平滑，小的前视距离会使得追踪更加精确，但是会带来震荡。<br>现在我们来看一下仿真程序：<br>首先我们需要为模型设定一些参数：包括前视距离系数，最小前视距离，速度P控制器系数(我们使用一个简单的P控制器控制速度)，时间间隔以及车长</p>
+<p>既然是基于模型的横向控制方法，首先要有模型，这里我们使用自行车模型<br><img src="/images/bicycle.png" alt><br>自行车模型是对阿克曼转向几何的简化，它将前面两个轮子组合成一个轮子，同样，也将后轮组合在一起。采用自行车模型的一大好处就在于它简化了前轮转向角与后轴将遵循的曲率之间的几何关系，由图可知，简化的几何关系可以写成：  </p>
+<p>$tan(\beta)=\frac{L}{R}$   </p>
+<p>其中$\delta$是前轮的转向角，$L$是前轴和后轴之间的距离，也就是轴距，$R$是在给定的转向角情况下后轮移动的转弯半径。这个公式能够在较低速度的场景下对车辆运动做估计。</p>
+<h2 id="pure-pursuit纯追踪算法"><a href="#pure-pursuit纯追踪算法" class="headerlink" title="pure pursuit纯追踪算法"></a>pure pursuit纯追踪算法</h2><p>纯追踪算法以及各种变形算法是移动机器人中最常用的路径追踪算法之一。从自行车模型出发,纯跟踪算法以车后轴为切点, 车辆纵向车身为切线, 通过控制前轮转角,使车辆可以沿着一条经过目标路点（goal point）的圆弧行驶，如下图所示：<br><img src="/images/pure.png" alt><br>图中($g_x,g_y$)是我们要追踪的下一个路径点，它位于路径规划层为我们规划好的路径上，我们需要控制车辆的前轮转角来使车辆的后轮经过该点。$l_d$表示车辆后轮到目标点的距离，$\alpha$表示车身姿态和目标点之间的夹角，根据正弦定理我们能得到：   </p>
+<p>$\frac{l_d}{sin(2\alpha)}=\frac{R}{sin(\frac{\pi}{2}-\alpha)}$<br>$\frac{l_d}{2sin(\alpha)cos(\alpha)}=\frac{R}{cos(\alpha)}$<br>$\frac{l_d}{sin(\alpha)}=2R$    </p>
+<p>如果用$\kappa$表示圆弧的曲率，那么$\kappa$可以表示为：   </p>
+<p>$\kappa=\frac{2sin\alpha}{l_d}$     </p>
+<p>由前面的转向角公式，我们可以得到:   </p>
+<p>$\delta=tan^{-1}(\kappa L)$     </p>
+<p>结合上面式子我们可以得到纯追踪算法控制量的的最终表达式：    </p>
+<p>$\delta (t)=tan^{-1}(\frac{2Lsin(\alpha(t))}{l_d})$     </p>
+<p>有了这个公式，那么当我们在某个时间点已知车身姿态和目标点之间的夹角$\alpha$,车身长度$L$以及车身后轮距离目标点的前视距离$l_d$时，我们就可以根据上面的公式算出前轮的转角$\delta$。<br>前面我们说过纯追踪算法是一种横向控制算法，当我们定义一个新的变量$e_{l_d}$:车辆当前姿态和目标路点在横向上的误差,我们可以得到：   </p>
+<p>$sin(\alpha)=\frac{e_{l_d}}{l_d}$     </p>
+<p>现在圆弧的曲率就可以表示为：    </p>
+<p>$\kappa=\frac{2}{l^2_d}e_{l_d}$       </p>
+<p>从这个式子我们就可以看出，纯追踪算法就是一种横向控制，其中系数P为$\frac{2}{l^2_d}$ ,这个P受参数$l_d$控制，所以如何调整前视距离变的很关键，实际中，$l_d$通常被认为是车速的函数，在不同的车速下需要选择不同的前视距离。一种最常见的调整前视距离的方法就是将前视距离表示成车辆纵向速度的线形函数，即$l_d=kv$，那么前轮的转角公式就变成了：    </p>
+<p>$\delta(t)=tan^{-1}(\frac{2Lsin(\alpha(t))}{kv_x(t)})$     </p>
+<p>现在我们只要调整系数k，就能控制车辆的前轮转向角，通常来说，会用一组最大，最小前视距离来约束前视距离，越大的前视距离意味着轨迹的追踪越平滑，小的前视距离会使得追踪更加精确，但是会带来震荡。<br>现在我们来看一下仿真程序：<br>首先我们需要为模型设定一些参数：包括前视距离系数，最小前视距离，速度P控制器系数(我们使用一个简单的P控制器控制速度)，时间间隔以及车长</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> numpy <span class="keyword">as</span> np</span><br><span class="line"><span class="keyword">import</span> math</span><br><span class="line"><span class="keyword">import</span> matplotlib.pyplot <span class="keyword">as</span> plt</span><br><span class="line"></span><br><span class="line">k = <span class="number">0.1</span>  <span class="comment"># 前视距离系数</span></span><br><span class="line">Lfc = <span class="number">2.0</span>  <span class="comment"># 前视距离</span></span><br><span class="line">Kp = <span class="number">1.0</span>  <span class="comment"># 速度P控制器系数</span></span><br><span class="line">dt = <span class="number">0.1</span>  <span class="comment"># 时间间隔，单位：s</span></span><br><span class="line">L = <span class="number">2.9</span>  <span class="comment"># 车长，单位：m</span></span><br></pre></td></tr></table></figure>
 
 <p>然后我们定义一个车辆状态类，在简单的自行车模型中，我们只考虑车辆的当前中心点位置 (x,y),后轮位置(x_rear,y_rear),车辆的偏航角度yaw以及车辆的速度v，同事我们定义一个车辆的状态更新函数来模拟真实车辆的状态更新：</p>
@@ -243,7 +260,7 @@
 <li>最小前向距离1.0<br><img src="/images/pure1.png" alt></li>
 <li>最小前向距离3.0<br><img src="/images/pure2.png" alt></li>
 </ol>
-<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p>通过实验我们发现，设定不同的前向距离，会出现不同的效果，前向距离越大，轨迹就会表现得更加“平滑”，更加平滑的结果就是在某些急剧的转角处会存在转向不足的情况，如果前向距离过小，结果会更精确，但是会不稳定，可能会伴随震荡。所以选择一个好的前向距离起着很重要的作用。</p>
+<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p>通过实验我们发现，设定不同的前向距离，会出现不同的效果，前向距离越大，轨迹就会表现得更加“平滑”，更加平滑的结果就是在某些急剧的转角处会存在转向不足的情况，如果前向距离过小，会导致不稳定，并会伴随震荡。所以选择一个好的前向距离起着很重要的作用。</p>
 <p>参考文献: Automatic Steering Methods for Autonomous Automobile Path Tracking</p>
 
       
@@ -397,7 +414,7 @@
                 </span>
                 <span class="tooltip-content">
                     <div class="toc-article">
-                    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#什么是pure-pursuit-纯跟踪-算法"><span class="toc-number">1.</span> <span class="toc-text">什么是pure pursuit(纯跟踪)算法</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#pure-pursuit纯追踪算法"><span class="toc-number">1.1.</span> <span class="toc-text">pure pursuit纯追踪算法</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#总结"><span class="toc-number">1.2.</span> <span class="toc-text">总结</span></a></li></ol></li></ol>
+                    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#什么是pure-pursuit-纯追踪-算法"><span class="toc-number">1.</span> <span class="toc-text">什么是pure pursuit(纯追踪)算法</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#pure-pursuit纯追踪算法"><span class="toc-number">1.1.</span> <span class="toc-text">pure pursuit纯追踪算法</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#总结"><span class="toc-number">1.2.</span> <span class="toc-text">总结</span></a></li></ol></li></ol>
                     </div>
                 </span>
             </div>
