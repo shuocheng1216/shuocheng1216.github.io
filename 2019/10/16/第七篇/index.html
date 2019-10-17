@@ -18,7 +18,7 @@
 <meta property="og:locale" content="en">
 <meta property="og:image" content="http://yoursite.com/images/fankui.png">
 <meta property="og:image" content="http://yoursite.com/images/jieguo2.png">
-<meta property="og:updated_time" content="2019-10-17T01:09:40.172Z">
+<meta property="og:updated_time" content="2019-10-17T01:20:49.086Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="LQR横向控制算法">
 <meta name="twitter:description" content="什么是LQRLQR全称linear quadratic regulator，即线性二次调节器，它属于最优控制理论。在无人车轨迹追踪的应用上，就是通过控制车辆转向角和速度，使得跟踪偏差能够快速、稳定地趋近于零，并保持平衡，同时前轮转角控制输入又尽可能小，所以这是一个典型的多目标优化最优控制问题。">
@@ -230,7 +230,7 @@
 <p>$x_{k+1}=Ax_k+Bu_k$   </p>
 <p>这里我们使用简单的自行车模型来模拟无人车，我们可以得到下面的离散系统状态方程：<br>1 $e_{k+1}=e_k+dt\times\dot e_k$   </p>
 <p>2  $\dot e_{k+1}=v\times sin(\theta_e(k))\approx v\times \theta_e(k)$   </p>
-<p>3 $\theta_e(k+1)=\theta_e(k)+dt\times \theta_e(k)$     </p>
+<p>3 $\theta_e(k+1)=\theta_e(k)+dt\times \dot{\theta_e}(k)$     </p>
 <p>4 $\dot{\theta_e}(k+1)=\frac{v}{R}=\frac{vtan(\delta)}{L}\approx \frac{v}{L}\delta$    </p>
 <p>有了上面这些公式，我们就可以得到状态转移矩阵A和输入矩阵B：    </p>
 <p>$A=\left[ \begin{array}{cccc}1.0&amp;dt&amp;0&amp;0\\0&amp;0&amp;v&amp;0\\0&amp;0&amp;1.0&amp;dt\\0&amp;0&amp;0&amp;0\end{array}<br>\right ]$    </p>
