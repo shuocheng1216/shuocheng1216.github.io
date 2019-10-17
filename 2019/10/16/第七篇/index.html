@@ -6,19 +6,23 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <link rel="dns-prefetch" href="http://yoursite.com">
-  <title>硕硕的博客</title>
+  <title>LQR横向控制算法 | 硕硕的博客</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="个人技术博客">
+  <meta name="description" content="什么是LQRLQR全称linear quadratic regulator，即线性二次调节器，它属于最优控制理论。在无人车轨迹追踪的应用上，就是通过控制车辆转向角和速度，使得跟踪偏差能够快速、稳定地趋近于零，并保持平衡，同时前轮转角控制输入又尽可能小，所以这是一个典型的多目标优化最优控制问题。">
 <meta name="keywords" content="无人驾驶，机器人，C++，Python，ROS，控制理论">
-<meta property="og:type" content="website">
-<meta property="og:title" content="硕硕的博客">
-<meta property="og:url" content="http://yoursite.com/index.html">
+<meta property="og:type" content="article">
+<meta property="og:title" content="LQR横向控制算法">
+<meta property="og:url" content="http://yoursite.com/2019/10/16/第七篇/index.html">
 <meta property="og:site_name" content="硕硕的博客">
-<meta property="og:description" content="个人技术博客">
+<meta property="og:description" content="什么是LQRLQR全称linear quadratic regulator，即线性二次调节器，它属于最优控制理论。在无人车轨迹追踪的应用上，就是通过控制车辆转向角和速度，使得跟踪偏差能够快速、稳定地趋近于零，并保持平衡，同时前轮转角控制输入又尽可能小，所以这是一个典型的多目标优化最优控制问题。">
 <meta property="og:locale" content="en">
+<meta property="og:image" content="http://yoursite.com/images/fankui.png">
+<meta property="og:image" content="http://yoursite.com/images/jieguo2.png">
+<meta property="og:updated_time" content="2019-10-17T00:17:07.545Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="硕硕的博客">
-<meta name="twitter:description" content="个人技术博客">
+<meta name="twitter:title" content="LQR横向控制算法">
+<meta name="twitter:description" content="什么是LQRLQR全称linear quadratic regulator，即线性二次调节器，它属于最优控制理论。在无人车轨迹追踪的应用上，就是通过控制车辆转向角和速度，使得跟踪偏差能够快速、稳定地趋近于零，并保持平衡，同时前轮转角控制输入又尽可能小，所以这是一个典型的多目标优化最优控制问题。">
+<meta name="twitter:image" content="http://yoursite.com/images/fankui.png">
   
     <link rel="alternative" href="/atom.xml" title="硕硕的博客" type="application/atom+xml">
   
@@ -180,15 +184,18 @@
           </div>
           <div id="js-content" class="content-ll">
             
+    <i class="fa fa-thumb-tack"></i>
+    <font color=7D26CD>置顶</font>
+    <span class="post-meta-divider">|</span>
   
-    <article id="post-第七篇" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+<article id="post-第七篇" class="article article-type-post " itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
         
   
-    <h1 itemprop="name">
-      <a class="article-title" href="/2019/10/16/第七篇/">LQR横向控制算法</a>
+    <h1 class="article-title" itemprop="name">
+      LQR横向控制算法
     </h1>
   
 
@@ -201,6 +208,10 @@
 
 
 	
+          <span class="archive-article-date">
+              阅读量 <span id="busuanzi_value_page_pv"></span>
+          </span>
+        
 
 
 
@@ -209,11 +220,55 @@
     <div class="article-entry" itemprop="articleBody">
       
         <h1 id="什么是LQR"><a href="#什么是LQR" class="headerlink" title="什么是LQR"></a>什么是LQR</h1><p>LQR全称linear quadratic regulator，即线性二次调节器，它属于最优控制理论。在无人车轨迹追踪的应用上，就是通过控制车辆转向角和速度，使得跟踪偏差能够快速、稳定地趋近于零，并保持平衡，同时前轮转角控制输入又尽可能小，所以这是一个典型的多目标优化最优控制问题。    </p>
-        
-          <a class="article-more-a" href="/2019/10/16/第七篇/#more">more >></a>
-        
+<a id="more"></a>
+<p>为了更清楚的理解什么是LQR，我们先来看一个状态空间表达：<br>$\dot{x}=Ax+Bu$<br>$y=Cx+Du$   </p>
+<p>其中$x(t)\in{R^n},u(t)\in{R^m}$,初始条件为$x(0)$,$x$是系统状态，在横向控制里，包括四个状态量，横向误差、横向误差的变化率、朝向误差和朝向误差的变化率。$u(t)$是我们的控制量，在这里是前轮转向角$\delta (t)$。我们假设系统的所有状态变量都是可以测量的。在正式介绍LQR之前，我们先来看一下现代控制理论里最基本的控制器，全状态反馈控制器:<br><img src="/images/fankui.png" alt><br>在这里，我们将控制量表示$u=-Kx$,通过反馈我们能使闭环系统能满足我们期望的性能。将控制量带入之前的系统状态方程，我们能得到：   </p>
+<p>$\dot{x}=(A-BK)x=A_cx$   </p>
+<p>所以现在我们就可以通过配置反馈矩阵$K$，使得闭环系统的极点达到我们期望的状态。但是什么样的极点会使系统性能更好呢？LQR为我们设计最优控制器提供了一种思路，在设计LQR控制器前，我们需要定义一个能量函数，最优控制应该能使该能量函数最小。一般选取如下形式的能量函数：<br>$J=\frac{1}{2}\int_0^\infty x^TQx+u^TRudt$<br>其中Q是我们自己设计的半正定矩阵，R为正定矩阵，一般都取对角矩阵。我们的控制目标就是使得J最小，也就是使得状态向量与输入控制量都要小。在横向控制中，状态向量很快趋于0意味着横向误差，朝向误差都尽可能快的减小，使得无人车尽可能快的跟踪上轨迹。输入控制量u也要尽可能小，因为我们可能不想过多的转动方向盘。<br>关于Q,R矩阵的选取，理论上，Q值选的大意味着状态变量会很快衰减到0，也就是误差项会很快减少到0。如果R值比较大，意味着输入的转向角会小，但是误差衰减的速度就会变慢。<br>我们先定义一下参数并定义一个状态类和状态更新函数：   </p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br><span class="line">125</span><br><span class="line">126</span><br><span class="line">127</span><br><span class="line">128</span><br><span class="line">129</span><br><span class="line">130</span><br><span class="line">131</span><br><span class="line">132</span><br><span class="line">133</span><br><span class="line">134</span><br><span class="line">135</span><br><span class="line">136</span><br><span class="line">137</span><br><span class="line">138</span><br><span class="line">139</span><br><span class="line">140</span><br><span class="line">141</span><br></pre></td><td class="code"><pre><span class="line">Kp = <span class="number">1.0</span>  <span class="comment"># 速度比例增益</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># LQR 参数</span></span><br><span class="line">Q = np.eye(<span class="number">4</span>)</span><br><span class="line">R = np.eye(<span class="number">1</span>)</span><br><span class="line"></span><br><span class="line">dt = <span class="number">0.1</span>  <span class="comment"># 时间间隔[s]</span></span><br><span class="line">L = <span class="number">0.5</span>  <span class="comment"># 车长 [m]</span></span><br><span class="line">max_steer = np.deg2rad(<span class="number">45.0</span>)  <span class="comment"># 最大转向角[rad]</span></span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">State</span>:</span></span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__init__</span><span class="params">(self, x=<span class="number">0.0</span>, y=<span class="number">0.0</span>, yaw=<span class="number">0.0</span>, v=<span class="number">0.0</span>)</span>:</span></span><br><span class="line">        self.x = x</span><br><span class="line">        self.y = y</span><br><span class="line">        self.yaw = yaw</span><br><span class="line">        self.v = v</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">update</span><span class="params">(state, a, delta)</span>:</span></span><br><span class="line"></span><br><span class="line">    <span class="keyword">if</span> delta &gt;= max_steer:</span><br><span class="line">        delta = max_steer</span><br><span class="line">    <span class="keyword">if</span> delta &lt;= - max_steer:</span><br><span class="line">        delta = - max_steer</span><br><span class="line"></span><br><span class="line">    state.x = state.x + state.v * math.cos(state.yaw) * dt</span><br><span class="line">    state.y = state.y + state.v * math.sin(state.yaw) * dt</span><br><span class="line">    state.yaw = state.yaw + state.v / L * math.tan(delta) * dt</span><br><span class="line">    state.v = state.v + a * dt</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> state</span><br><span class="line">```   </span><br><span class="line">因为无人车的轨迹追踪是一个离散的过程，所以相应的我们应该使用离散时间的LQR控制，离散时间的线性系统定义如下：   </span><br><span class="line"></span><br><span class="line">$x_&#123;k+<span class="number">1</span>&#125;=Ax_k+Bu_k$   </span><br><span class="line"></span><br><span class="line">这里我们使用简单的自行车模型来模拟无人车，我们可以得到下面的离散系统状态方程：   </span><br><span class="line"><span class="number">1</span> $e_&#123;k+<span class="number">1</span>&#125;=e_k+dt\times\dot e_k$   </span><br><span class="line"></span><br><span class="line"><span class="number">2</span>  $\dot e_&#123;k+<span class="number">1</span>&#125;=v\times sin(\theta_e(k))\approx v\times \theta_e(k)$   </span><br><span class="line"></span><br><span class="line"><span class="number">3</span> $\theta_e(k+<span class="number">1</span>)=\theta_e(k)+dt\times \theta_e(k)$     </span><br><span class="line"></span><br><span class="line"><span class="number">4</span> $\dot&#123;\theta_e&#125;(k+<span class="number">1</span>)=\frac&#123;v&#125;&#123;R&#125;=\frac&#123;vtan(\delta)&#125;&#123;L&#125;\approx \frac&#123;v&#125;&#123;L&#125;\delta$    </span><br><span class="line"></span><br><span class="line">有了上面这些公式，我们就可以得到状态转移矩阵A和输入矩阵B：    </span><br><span class="line"></span><br><span class="line">$A=\left[ \begin&#123;array&#125;&#123;cccc&#125;<span class="number">1.0</span>&amp;dt&amp;<span class="number">0</span>&amp;<span class="number">0</span>\\<span class="number">0</span>&amp;<span class="number">0</span>&amp;v&amp;<span class="number">0</span>\\<span class="number">0</span>&amp;<span class="number">0</span>&amp;<span class="number">1.0</span>&amp;dt\\<span class="number">0</span>&amp;<span class="number">0</span>&amp;<span class="number">0</span>&amp;<span class="number">0</span>\end&#123;array&#125; </span><br><span class="line">\right ]$   </span><br><span class="line">$B=\left[ \begin&#123;array&#125;&#123;c&#125;<span class="number">0</span>\\<span class="number">0</span>\\<span class="number">0</span>\\\frac&#123;v&#125;&#123;L&#125;\end&#123;array&#125; </span><br><span class="line">\right ]$   </span><br><span class="line">相应的离散系统能量函数为：   </span><br><span class="line"></span><br><span class="line">$J=\sum_&#123;k=<span class="number">0</span>&#125;^\infty(x_k^TQx_k+u_k^TRu_k)$    </span><br><span class="line"></span><br><span class="line">可以让性能指标最小化的最佳控制序列为: $u_k=-Kx_k$ ，其中   </span><br><span class="line"></span><br><span class="line">$K=(R+B^TPB)^&#123;<span class="number">-1</span>&#125;B^TPA$   </span><br><span class="line"></span><br><span class="line">而$P$是离散代数Riccati方程（DARE）的唯一正定解。   </span><br><span class="line"></span><br><span class="line">$P=A^TPA-A^TPB(R+B^TPB)^&#123;<span class="number">-1</span>&#125;B^TPA+Q$   </span><br><span class="line"></span><br><span class="line">求解代数Riccati方程的一个方式是迭代计算有限时间的动态Riccati方程，直到所得的解收敛为止。</span><br><span class="line">```Python</span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">solve_DARE</span><span class="params">(A, B, Q, R)</span>:</span></span><br><span class="line">    <span class="string">"""</span></span><br><span class="line"><span class="string">    解离散代数Riccati方程（DARE）</span></span><br><span class="line"><span class="string">    """</span></span><br><span class="line">    X = Q</span><br><span class="line">    maxiter = <span class="number">150</span></span><br><span class="line">    eps = <span class="number">0.01</span></span><br><span class="line"></span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> range(maxiter):</span><br><span class="line">        Xn = A.T @ X @ A - A.T @ X @ B @ \</span><br><span class="line">            la.inv(R + B.T @ X @ B) @ B.T @ X @ A + Q</span><br><span class="line">        <span class="keyword">if</span> (abs(Xn - X)).max() &lt; eps:</span><br><span class="line">            <span class="keyword">break</span></span><br><span class="line">        X = Xn</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> Xn</span><br><span class="line"></span><br><span class="line">``` </span><br><span class="line">得到P矩阵后，我们就能计算反馈矩阵K   </span><br><span class="line">```Python</span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">dlqr</span><span class="params">(A, B, Q, R)</span>:</span></span><br><span class="line">   </span><br><span class="line">    <span class="string">"""</span></span><br><span class="line"><span class="string">    离散时间LQR控制器</span></span><br><span class="line"><span class="string">    x[k+1] = A x[k] + B u[k]</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">    """</span></span><br><span class="line">    <span class="comment"># 解 ricatti 方程</span></span><br><span class="line">    X = solve_DARE(A, B, Q, R)</span><br><span class="line"></span><br><span class="line">    <span class="comment"># 计算 LQR 增益</span></span><br><span class="line">    K = la.inv(B.T @ X @ B + R) @ (B.T @ X @ A)</span><br><span class="line"></span><br><span class="line">    eigVals, eigVecs = la.eig(A - B @ K)</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> K, X, eigVals</span><br><span class="line">```   </span><br><span class="line">根据求解的状态反馈调节器增益𝐾,我们就可以得到最优的状态反馈前轮转角$f_b$: $f_b=-Kx$    </span><br><span class="line">由于在LQR状态反馈控制求解过程中没有考虑路径本身的动态变化特性，因此在只有反馈控制输入时，LQR控制在曲线行驶时会存在稳态误差，为了消除该稳态误差，还需要加上一个前馈控制输入量 $f_f$，前馈控制考虑了路径的曲率：$f_f=tan(L*k)^&#123;<span class="number">-1</span>&#125;$,所以，总LQR前轮转角输入为：   </span><br><span class="line"></span><br><span class="line">$\delta=\delta_&#123;ff&#125;+\delta_&#123;fb&#125;$   </span><br><span class="line"></span><br><span class="line">```Python</span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">lqr_steering_control</span><span class="params">(state, cx, cy, cyaw, ck, pe, pth_e)</span>:</span></span><br><span class="line">    ind, e = calc_nearest_index(state, cx, cy, cyaw)</span><br><span class="line"></span><br><span class="line">    k = ck[ind]</span><br><span class="line">    v = state.v</span><br><span class="line">    th_e = pi_2_pi(state.yaw - cyaw[ind])</span><br><span class="line"></span><br><span class="line">    A = np.zeros((<span class="number">4</span>, <span class="number">4</span>))</span><br><span class="line">    A[<span class="number">0</span>, <span class="number">0</span>] = <span class="number">1.0</span></span><br><span class="line">    A[<span class="number">0</span>, <span class="number">1</span>] = dt</span><br><span class="line">    A[<span class="number">1</span>, <span class="number">2</span>] = v</span><br><span class="line">    A[<span class="number">2</span>, <span class="number">2</span>] = <span class="number">1.0</span></span><br><span class="line">    A[<span class="number">2</span>, <span class="number">3</span>] = dt</span><br><span class="line"></span><br><span class="line">    B = np.zeros((<span class="number">4</span>, <span class="number">1</span>))</span><br><span class="line">    B[<span class="number">3</span>, <span class="number">0</span>] = v / L</span><br><span class="line"></span><br><span class="line">    K, _, _ = dlqr(A, B, Q, R)</span><br><span class="line"></span><br><span class="line">    x = np.zeros((<span class="number">4</span>, <span class="number">1</span>))</span><br><span class="line"></span><br><span class="line">    x[<span class="number">0</span>, <span class="number">0</span>] = e</span><br><span class="line">    x[<span class="number">1</span>, <span class="number">0</span>] = (e - pe) / dt</span><br><span class="line">    x[<span class="number">2</span>, <span class="number">0</span>] = th_e</span><br><span class="line">    x[<span class="number">3</span>, <span class="number">0</span>] = (th_e - pth_e) / dt</span><br><span class="line"></span><br><span class="line">    ff = math.atan2(L * k, <span class="number">1</span>)</span><br><span class="line">    fb = pi_2_pi((-K @ x)[<span class="number">0</span>, <span class="number">0</span>])</span><br><span class="line"></span><br><span class="line">    delta = ff + fb</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> delta, ind, e, th_e</span><br></pre></td></tr></table></figure>
+
+<p>我们需要定义求最近点索引的函数：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">calc_nearest_index</span><span class="params">(state, cx, cy, cyaw)</span>:</span></span><br><span class="line">    dx = [state.x - icx <span class="keyword">for</span> icx <span class="keyword">in</span> cx]</span><br><span class="line">    dy = [state.y - icy <span class="keyword">for</span> icy <span class="keyword">in</span> cy]</span><br><span class="line"></span><br><span class="line">    d = [idx ** <span class="number">2</span> + idy ** <span class="number">2</span> <span class="keyword">for</span> (idx, idy) <span class="keyword">in</span> zip(dx, dy)]</span><br><span class="line"></span><br><span class="line">    mind = min(d)</span><br><span class="line"></span><br><span class="line">    ind = d.index(mind)</span><br><span class="line"></span><br><span class="line">    mind = math.sqrt(mind)</span><br><span class="line"></span><br><span class="line">    dxl = cx[ind] - state.x</span><br><span class="line">    dyl = cy[ind] - state.y</span><br><span class="line"></span><br><span class="line">    angle = pi_2_pi(cyaw[ind] - math.atan2(dyl, dxl))</span><br><span class="line">    <span class="keyword">if</span> angle &lt; <span class="number">0</span>:</span><br><span class="line">        mind *= <span class="number">-1</span></span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> ind, mind</span><br></pre></td></tr></table></figure>
+
+<p>现在我们已经有了转向角，对于速度，我们采用P控制：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">PControl</span><span class="params">(target, current)</span>:</span></span><br><span class="line">    a = Kp * (target - current)</span><br><span class="line">    <span class="keyword">return</span> a</span><br></pre></td></tr></table></figure>
+
+<p>有了控制量，我们就可以控制无人车跟踪轨迹了：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">closed_loop_prediction</span><span class="params">(cx, cy, cyaw, ck, target_speed, goal)</span>:</span></span><br><span class="line">    T = <span class="number">500.0</span>  <span class="comment"># 最大仿真时间</span></span><br><span class="line">    goal_dis = <span class="number">0.3</span> </span><br><span class="line">    stop_speed = <span class="number">0.05</span></span><br><span class="line"></span><br><span class="line">    state = State(x=<span class="number">-0.0</span>, y=<span class="number">-0.0</span>, yaw=<span class="number">0.0</span>, v=<span class="number">0.0</span>)</span><br><span class="line"></span><br><span class="line">    time = <span class="number">0.0</span></span><br><span class="line">    x = [state.x]</span><br><span class="line">    y = [state.y]</span><br><span class="line">    yaw = [state.yaw]</span><br><span class="line">    v = [state.v]</span><br><span class="line">    t = [<span class="number">0.0</span>]</span><br><span class="line"></span><br><span class="line">    e, e_th = <span class="number">0.0</span>, <span class="number">0.0</span></span><br><span class="line"></span><br><span class="line">    <span class="keyword">while</span> T &gt;= time:</span><br><span class="line">        dl, target_ind, e, e_th = lqr_steering_control(</span><br><span class="line">            state, cx, cy, cyaw, ck, e, e_th)</span><br><span class="line"></span><br><span class="line">        ai = PControl(target_speed, state.v)</span><br><span class="line">        state = update(state, ai, dl)</span><br><span class="line"></span><br><span class="line">        <span class="keyword">if</span> abs(state.v) &lt;= stop_speed:</span><br><span class="line">           target_ind += <span class="number">1</span></span><br><span class="line"></span><br><span class="line">        time = time + dt</span><br><span class="line"></span><br><span class="line">        <span class="comment">#判断是否到达终点</span></span><br><span class="line">        dx = state.x - goal[<span class="number">0</span>]</span><br><span class="line">        dy = state.y - goal[<span class="number">1</span>]</span><br><span class="line">        <span class="keyword">if</span> math.sqrt(dx ** <span class="number">2</span> + dy ** <span class="number">2</span>) &lt;= goal_dis:</span><br><span class="line">            print(<span class="string">"Goal"</span>)</span><br><span class="line">            <span class="keyword">break</span></span><br><span class="line"></span><br><span class="line">        x.append(state.x)</span><br><span class="line">        y.append(state.y)</span><br><span class="line">        yaw.append(state.yaw)</span><br><span class="line">        v.append(state.v)</span><br><span class="line">        t.append(time)</span><br><span class="line"></span><br><span class="line">        <span class="keyword">if</span> target_ind % <span class="number">1</span> == <span class="number">0</span> <span class="keyword">and</span> show_animation:</span><br><span class="line">            plt.cla()</span><br><span class="line">            plt.plot(cx, cy, <span class="string">"-r"</span>, label=<span class="string">"course"</span>)</span><br><span class="line">            plt.plot(x, y, <span class="string">"ob"</span>, label=<span class="string">"trajectory"</span>)</span><br><span class="line">            plt.plot(cx[target_ind], cy[target_ind], <span class="string">"xg"</span>, label=<span class="string">"target"</span>)</span><br><span class="line">            plt.axis(<span class="string">"equal"</span>)</span><br><span class="line">            plt.grid(<span class="literal">True</span>)</span><br><span class="line">            plt.title(<span class="string">"speed[km/h]:"</span> + str(round(state.v * <span class="number">3.6</span>, <span class="number">2</span>))</span><br><span class="line">                      + <span class="string">",target index:"</span> + str(target_ind))</span><br><span class="line">            plt.pause(<span class="number">0.0001</span>)</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> t, x, y, yaw, v</span><br></pre></td></tr></table></figure>
+
+<p>最后，我们定义主函数：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">main</span><span class="params">()</span>:</span></span><br><span class="line">    print(<span class="string">"LQR steering control tracking start!!"</span>)</span><br><span class="line">    ax = [<span class="number">0.0</span>, <span class="number">6.0</span>, <span class="number">12.5</span>, <span class="number">10.0</span>, <span class="number">7.5</span>, <span class="number">3.0</span>, <span class="number">-1.0</span>]</span><br><span class="line">    ay = [<span class="number">0.0</span>, <span class="number">-3.0</span>, <span class="number">-5.0</span>, <span class="number">6.5</span>, <span class="number">3.0</span>, <span class="number">5.0</span>, <span class="number">-2.0</span>]</span><br><span class="line">    goal = [ax[<span class="number">-1</span>], ay[<span class="number">-1</span>]]</span><br><span class="line"></span><br><span class="line">    cx, cy, cyaw, ck, s = cubic_spline_planner.calc_spline_course(</span><br><span class="line">        ax, ay, ds=<span class="number">0.1</span>)</span><br><span class="line">    target_speed = <span class="number">10.0</span> / <span class="number">3.6</span>  <span class="comment">#  m/s</span></span><br><span class="line"></span><br><span class="line">    t, x, y, yaw, v = closed_loop_prediction(cx, cy, cyaw, ck, target_speed, goal)</span><br><span class="line"></span><br><span class="line">    <span class="keyword">if</span> show_animation:  </span><br><span class="line">        plt.close()</span><br><span class="line">        plt.subplots(<span class="number">1</span>)</span><br><span class="line">        plt.plot(ax, ay, <span class="string">"xb"</span>, label=<span class="string">"input"</span>)</span><br><span class="line">        plt.plot(cx, cy, <span class="string">"-r"</span>, label=<span class="string">"spline"</span>)</span><br><span class="line">        plt.plot(x, y, <span class="string">"-g"</span>, label=<span class="string">"tracking"</span>)</span><br><span class="line">        plt.grid(<span class="literal">True</span>)</span><br><span class="line">        plt.axis(<span class="string">"equal"</span>)</span><br><span class="line">        plt.xlabel(<span class="string">"x[m]"</span>)</span><br><span class="line">        plt.ylabel(<span class="string">"y[m]"</span>)</span><br><span class="line">        plt.legend()</span><br><span class="line"></span><br><span class="line">        plt.subplots(<span class="number">1</span>)</span><br><span class="line">        plt.plot(s, [np.rad2deg(iyaw) <span class="keyword">for</span> iyaw <span class="keyword">in</span> cyaw], <span class="string">"-r"</span>, label=<span class="string">"yaw"</span>)</span><br><span class="line">        plt.grid(<span class="literal">True</span>)</span><br><span class="line">        plt.legend()</span><br><span class="line">        plt.xlabel(<span class="string">"line length[m]"</span>)</span><br><span class="line">        plt.ylabel(<span class="string">"yaw angle[deg]"</span>)</span><br><span class="line"></span><br><span class="line">        plt.subplots(<span class="number">1</span>)</span><br><span class="line">        plt.plot(s, ck, <span class="string">"-r"</span>, label=<span class="string">"curvature"</span>)</span><br><span class="line">        plt.grid(<span class="literal">True</span>)</span><br><span class="line">        plt.legend()</span><br><span class="line">        plt.xlabel(<span class="string">"line length[m]"</span>)</span><br><span class="line">        plt.ylabel(<span class="string">"curvature [1/m]"</span>)</span><br><span class="line"></span><br><span class="line">        plt.show()</span><br></pre></td></tr></table></figure>
+
+<p>结果：<br><img src="/images/jieguo2.png" alt></p>
+
       
 
+      
+        <div class="page-reward">
+          <a href="javascript:;" class="page-reward-btn tooltip-top">
+            <div class="tooltip tooltip-east">
+            <span class="tooltip-item">
+              赏
+            </span>
+            <span class="tooltip-content">
+              <span class="tooltip-text">
+                <span class="tooltip-inner">
+                  <p class="reward-p"><i class="icon icon-quo-left"></i>谢谢你请我吃糖果<i class="icon icon-quo-right"></i></p>
+                  <div class="reward-box">
+                    
+                    
+                    <div class="reward-box-item">
+                      <img class="reward-img" src="/assets/img/weixin.jpg">
+                      <span class="reward-type">微信</span>
+                    </div>
+                    
+                  </div>
+                </span>
+              </span>
+            </span>
+          </div>
+          </a>
+        </div>
       
     </div>
     <div class="article-info article-info-index">
@@ -238,16 +293,75 @@
 
 
       
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2019/10/16/第七篇/">展开全文 >></a>
-        </p>
-      
 
+      
+        
+<div class="share-btn share-icons tooltip-left">
+  <div class="tooltip tooltip-east">
+    <span class="tooltip-item">
+      <a href="javascript:;" class="share-sns share-outer">
+        <i class="icon icon-share"></i>
+      </a>
+    </span>
+    <span class="tooltip-content">
+      <div class="share-wrap">
+        <div class="share-icons">
+          <a class="weibo share-sns" href="javascript:;" data-type="weibo">
+            <i class="icon icon-weibo"></i>
+          </a>
+          <a class="weixin share-sns wxFab" href="javascript:;" data-type="weixin">
+            <i class="icon icon-weixin"></i>
+          </a>
+          <a class="qq share-sns" href="javascript:;" data-type="qq">
+            <i class="icon icon-qq"></i>
+          </a>
+          <a class="douban share-sns" href="javascript:;" data-type="douban">
+            <i class="icon icon-douban"></i>
+          </a>
+          <a class="qzone share-sns" href="javascript:;" data-type="qzone">
+            <i class="icon icon-qzone"></i>
+          </a>
+          <a class="facebook share-sns" href="javascript:;" data-type="facebook">
+            <i class="icon icon-facebook"></i>
+          </a>
+          <a class="twitter share-sns" href="javascript:;" data-type="twitter">
+            <i class="icon icon-twitter"></i>
+          </a>
+          <a class="google share-sns" href="javascript:;" data-type="google">
+            <i class="icon icon-google"></i>
+          </a>
+        </div>
+      </div>
+    </span>
+  </div>
+</div>
+
+<div class="page-modal wx-share js-wx-box">
+    <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <div class="wx-qrcode">
+      <img src="//api.qrserver.com/v1/create-qr-code/?size=150x150&data=https://shuocheng1216.github.io/2019/10/16/第七篇/" alt="微信分享二维码">
+    </div>
+</div>
+
+<div class="mask js-mask"></div>
       
       <div class="clearfix"></div>
     </div>
   </div>
 </article>
+
+  
+<nav id="article-nav">
+  
+  
+    <a href="/2019/10/14/第五篇-1/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">路径追踪之Stanley控制</div>
+      <i class="icon-circle-right"></i>
+    </a>
+  
+</nav>
+
 
 <aside class="wrap-side-operation">
     <div class="mod-side-operation">
@@ -262,552 +376,32 @@
         </div>
         
         
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-第五篇-1" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2019/10/14/第五篇-1/">路径追踪之Stanley控制</a>
-    </h1>
-  
-
-        
-        <a href="/2019/10/14/第五篇-1/" class="archive-article-date">
-  	<time datetime="2019-10-14T17:19:09.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-10-14</time>
-</a>
-        
-
-
-
-	
-
-
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h1 id="什么是Stanley控制"><a href="#什么是Stanley控制" class="headerlink" title="什么是Stanley控制"></a>什么是Stanley控制</h1><p>在无人车轨迹追踪方面，主要有两种方法：基于几何追踪的方法和基于模型预测的方法，其中几何追踪方法主要包含纯跟踪和Stanley两种方法，上篇文章已经介绍了纯跟踪(Pure Pursuit)方法,今天这篇文章主要是介绍另外一种方法，Stanley控制方法，也叫做前轮反馈控制方法。斯坦福大学无人车在DARPA Grand Chanllenge比赛中就是使用的这种轨迹追踪方法。</p>
-        
-          <a class="article-more-a" href="/2019/10/14/第五篇-1/#more">more >></a>
-        
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-        <div class="article-pop-out tagcloud">
-          <i class="icon-tuding"></i>
-          <a class="article-tag-list-link color3">置顶</a>
-        </div>
-      
-      
-      
-	<div class="article-category tagcloud">
-		<i class="icon-book icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="/categories/机器人//" class="article-tag-list-link color4">机器人</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2019/10/14/第五篇-1/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
+        <div class="toc-container tooltip-left">
+            <i class="icon-font icon-category"></i>
+            <div class="tooltip tooltip-east">
+                <span class="tooltip-item">
+                </span>
+                <span class="tooltip-content">
+                    <div class="toc-article">
+                    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#什么是LQR"><span class="toc-number">1.</span> <span class="toc-text">什么是LQR</span></a></li></ol>
+                    </div>
+                </span>
             </div>
         </div>
         
-        
     </div>
 </aside>
 
 
 
-
   
-    <article id="post-第五篇" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
   
-    <h1 itemprop="name">
-      <a class="article-title" href="/2019/10/13/第五篇/">路径追踪之Pure Pursuit</a>
-    </h1>
   
 
-        
-        <a href="/2019/10/13/第五篇/" class="archive-article-date">
-  	<time datetime="2019-10-13T21:02:21.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-10-13</time>
-</a>
-        
-
-
-
-	
-
-
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h1 id="什么是pure-pursuit-纯追踪-算法"><a href="#什么是pure-pursuit-纯追踪-算法" class="headerlink" title="什么是pure pursuit(纯追踪)算法"></a>什么是pure pursuit(纯追踪)算法</h1><p>无人驾驶车辆是一个复杂的结合系统，其中算法模块主要包含感知、定位、轨迹预测、行为决策、运动规划及反馈控制等。其中反馈控制包括横向控制和纵向控制两个部分，横向控制主要用于车辆方向盘的控制，纵向控制则主要负责车辆油门、刹车的控制，两者协同工作以使无人车按照预定的参考轨迹行驶。今天我们要讲的就是横向控制中的一种，叫pure pursuit纯追踪算法。</p>
-        
-          <a class="article-more-a" href="/2019/10/13/第五篇/#more">more >></a>
-        
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-        <div class="article-pop-out tagcloud">
-          <i class="icon-tuding"></i>
-          <a class="article-tag-list-link color3">置顶</a>
-        </div>
-      
-      
-      
-	<div class="article-category tagcloud">
-		<i class="icon-book icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="/categories/机器人//" class="article-tag-list-link color4">机器人</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2019/10/13/第五篇/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-hello-world" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2019/10/10/hello-world/">快速扩展随机树(RRT)算法</a>
-    </h1>
   
 
-        
-        <a href="/2019/10/10/hello-world/" class="archive-article-date">
-  	<time datetime="2019-10-10T15:55:59.209Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-10-10</time>
-</a>
-        
-
-
-
-	
-
-
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h1 id="什么是RRT"><a href="#什么是RRT" class="headerlink" title="什么是RRT"></a>什么是RRT</h1><p>RRT算法全称Rapidly-exploring Random Tree，它是一种基于随机采样的路径规划方法，它能够快速地搜索整个状态空间，从而寻找一条从起始点到目标点的规划路径。</p>
-        
-          <a class="article-more-a" href="/2019/10/10/hello-world/#more">more >></a>
-        
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-        <div class="article-pop-out tagcloud">
-          <i class="icon-tuding"></i>
-          <a class="article-tag-list-link color3">置顶</a>
-        </div>
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">随笔</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-	<div class="article-category tagcloud">
-		<i class="icon-book icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="/categories/机器人//" class="article-tag-list-link color4">机器人</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2019/10/10/hello-world/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-第三篇" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2019/10/12/第三篇/">机器人局部避障的动态窗口法(DWA)</a>
-    </h1>
   
 
-        
-        <a href="/2019/10/12/第三篇/" class="archive-article-date">
-  	<time datetime="2019-10-12T11:42:22.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-10-12</time>
-</a>
-        
-
-
-
-	
-
-
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h1 id="DWA算法"><a href="#DWA算法" class="headerlink" title="DWA算法"></a>DWA算法</h1><p>DWA算法全称为dynamic window approach，是一种应用机器人局部路径规划的算法。其原理主要是在速度空间（v,w）中采样多组速度，并模拟这些速度在一定时间内的运动轨迹，再通过一个评价函数，选出最优路径，把最优速度传递给机器人。</p>
-        
-          <a class="article-more-a" href="/2019/10/12/第三篇/#more">more >></a>
-        
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-        <div class="article-pop-out tagcloud">
-          <i class="icon-tuding"></i>
-          <a class="article-tag-list-link color3">置顶</a>
-        </div>
-      
-      
-      
-	<div class="article-category tagcloud">
-		<i class="icon-book icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="/categories/机器人//" class="article-tag-list-link color4">机器人</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2019/10/12/第三篇/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-第二篇" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2019/10/11/第二篇/">Advance C++:const</a>
-    </h1>
-  
-
-        
-        <a href="/2019/10/11/第二篇/" class="archive-article-date">
-  	<time datetime="2019-10-11T18:06:14.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-10-11</time>
-</a>
-        
-
-
-
-	
-
-
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h1 id="什么是const"><a href="#什么是const" class="headerlink" title="什么是const"></a>什么是const</h1><p>const 是 constant 的缩写，本意是不变的，不易改变的意思。cons关键字允许程序员告诉编译器某值在编译阶段是保持不变的。如果在编程中确实有某个值保持不变，就应该明确使用const，这样可以获得编译器的帮助。</p>
-        
-          <a class="article-more-a" href="/2019/10/11/第二篇/#more">more >></a>
-        
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-        <div class="article-pop-out tagcloud">
-          <i class="icon-tuding"></i>
-          <a class="article-tag-list-link color3">置顶</a>
-        </div>
-      
-      
-      
-	<div class="article-category tagcloud">
-		<i class="icon-book icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="/categories/C//" class="article-tag-list-link color4">C++</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2019/10/11/第二篇/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-我的第一篇博客文章" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2019/10/10/我的第一篇博客文章/">Advance C++:参数依赖查找 Koenig lookup</a>
-    </h1>
-  
-
-        
-        <a href="/2019/10/10/我的第一篇博客文章/" class="archive-article-date">
-  	<time datetime="2019-10-10T16:04:20.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-10-10</time>
-</a>
-        
-
-
-
-	
-
-
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h1 id="什么是参数依赖查找"><a href="#什么是参数依赖查找" class="headerlink" title="什么是参数依赖查找"></a>什么是参数依赖查找</h1><p>在没有显式名称空间限定符的情况下调用函数时，如果该函数的某个参数类型也在该名称空间中，则编译器可以选择在名称空间中调用函数。</p>
-        
-          <a class="article-more-a" href="/2019/10/10/我的第一篇博客文章/#more">more >></a>
-        
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-        <div class="article-pop-out tagcloud">
-          <i class="icon-tuding"></i>
-          <a class="article-tag-list-link color3">置顶</a>
-        </div>
-      
-      
-      
-	<div class="article-category tagcloud">
-		<i class="icon-book icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="/categories/C//" class="article-tag-list-link color4">C++</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2019/10/10/我的第一篇博客文章/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
   
 
 
@@ -842,8 +436,8 @@
     <script>
 	var yiliaConfig = {
 		mathjax: true,
-		isHome: true,
-		isPost: false,
+		isHome: false,
+		isPost: true,
 		isArchive: false,
 		isTag: false,
 		isCategory: false,
