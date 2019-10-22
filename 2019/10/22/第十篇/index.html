@@ -6,20 +6,20 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <link rel="dns-prefetch" href="http://yoursite.com">
-  <title>Tensorflow的使用1 | 硕硕的博客</title>
+  <title>Tensorflow的使用(1) | 硕硕的博客</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
   <meta name="description" content="今天尝试使用TensorFlow实现一个简单的例子，来熟悉下TensorFlow的使用。">
 <meta name="keywords" content="无人驾驶，机器人，C++，Python，ROS，控制理论">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Tensorflow的使用1">
+<meta property="og:title" content="Tensorflow的使用(1)">
 <meta property="og:url" content="http://yoursite.com/2019/10/22/第十篇/index.html">
 <meta property="og:site_name" content="硕硕的博客">
 <meta property="og:description" content="今天尝试使用TensorFlow实现一个简单的例子，来熟悉下TensorFlow的使用。">
 <meta property="og:locale" content="en">
 <meta property="og:image" content="http://yoursite.com/images/tensorflow.png">
-<meta property="og:updated_time" content="2019-10-22T22:10:10.223Z">
+<meta property="og:updated_time" content="2019-10-22T22:14:38.142Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Tensorflow的使用1">
+<meta name="twitter:title" content="Tensorflow的使用(1)">
 <meta name="twitter:description" content="今天尝试使用TensorFlow实现一个简单的例子，来熟悉下TensorFlow的使用。">
 <meta name="twitter:image" content="http://yoursite.com/images/tensorflow.png">
   
@@ -194,7 +194,7 @@
         
   
     <h1 class="article-title" itemprop="name">
-      Tensorflow的使用1
+      Tensorflow的使用(1)
     </h1>
   
 
@@ -227,7 +227,7 @@
 <p>再看一些上面代码里用到的方法    </p>
 <h2 id="1-tf-random-uniform的使用"><a href="#1-tf-random-uniform的使用" class="headerlink" title="1 tf.random_uniform的使用:"></a>1 tf.random_uniform的使用:</h2><p>tf.random_uniform((4, 4), minval=low,maxval=high,dtype=tf.float32)))返回4*4的矩阵，产生于low和high之间，产生的值是均匀分布的。    </p>
 <h2 id="2-tf-reduce-mean-的使用："><a href="#2-tf-reduce-mean-的使用：" class="headerlink" title="2 tf.reduce_mean()的使用："></a>2 tf.reduce_mean()的使用：</h2><p>tf.reduce_mean()函数用于计算张量tensor沿着指定的数轴（tensor的某一维度）上的平均值，主要用作降维或者计算tensor（图像）的平均值。例如：</p>
-<figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># x=[[1.,2.],</span></span><br><span class="line">    [<span class="number">3.</span>,<span class="number">4.</span>]]</span><br><span class="line">tf.reduce_mean(x) ==&gt; 2.5 #如果不指定第二个参数，那么就在所有的元素中取平均值</span><br><span class="line">tf.reduce_mean(x, 0) ==&gt; [2.,  3.] #指定第二个参数为0，则第一维的元素取平均值，即每一列求平均值</span><br><span class="line">tf.reduce_mean(x, 1) ==&gt; [1.5,  3.5] #指定第二个参数为1，则第二维的元素取平均值，即每一行求平均值</span><br></pre></td></tr></table></figure>
+<figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># x=[[1.,2.],</span></span><br><span class="line"><span class="comment">#    [3.,4.]]</span></span><br><span class="line">tf.reduce_mean(x) ==&gt; 2.5 #如果不指定第二个参数，那么就在所有的元素中取平均值</span><br><span class="line">tf.reduce_mean(x, 0) ==&gt; [2.,  3.] #指定第二个参数为0，则第一维的元素取平均值，即每一列求平均值</span><br><span class="line">tf.reduce_mean(x, 1) ==&gt; [1.5,  3.5] #指定第二个参数为1，则第二维的元素取平均值，即每一行求平均值</span><br></pre></td></tr></table></figure>
 
 <h2 id="3-tf-zeros-的使用"><a href="#3-tf-zeros-的使用" class="headerlink" title="3 tf.zeros()的使用:"></a>3 tf.zeros()的使用:</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">tf.zeros(</span><br><span class="line">    shape,</span><br><span class="line">    dtype=tf.float32,</span><br><span class="line">    name=<span class="literal">None</span></span><br><span class="line">)</span><br><span class="line"><span class="comment"># shape代表形状，也就是1维的还是2维的还是n维的数组</span></span><br><span class="line"><span class="comment"># dtype代表所要创建的tensor对象的数据类型</span></span><br><span class="line"><span class="comment"># 返回所有参数都为０的tensor对象</span></span><br></pre></td></tr></table></figure>
 
