@@ -6,19 +6,20 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <link rel="dns-prefetch" href="http://yoursite.com">
-  <title>Archives | 硕硕的博客</title>
+  <title>十大经典排序算法Python实现 | 硕硕的博客</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="个人技术博客">
+  <meta name="description" content="排序算法分类常见排序算法可以分为两大类：  比较类排序：通过比较来决定元素间的相对次序，由于其时间复杂度不能突破O(nlogn)，因此也称为非线性时间比较类排序 非比较类排序：不通过比较来决定元素间的相对次序，它可以突破基于比较排序的时间下界，以线性时间运行，因此也称为线性时间非比较类排序。">
 <meta name="keywords" content="无人驾驶，机器人，C++，Python，ROS，控制理论">
-<meta property="og:type" content="website">
-<meta property="og:title" content="硕硕的博客">
-<meta property="og:url" content="http://yoursite.com/archives/index.html">
+<meta property="og:type" content="article">
+<meta property="og:title" content="十大经典排序算法Python实现">
+<meta property="og:url" content="http://yoursite.com/2019/10/24/第十二篇/index.html">
 <meta property="og:site_name" content="硕硕的博客">
-<meta property="og:description" content="个人技术博客">
+<meta property="og:description" content="排序算法分类常见排序算法可以分为两大类：  比较类排序：通过比较来决定元素间的相对次序，由于其时间复杂度不能突破O(nlogn)，因此也称为非线性时间比较类排序 非比较类排序：不通过比较来决定元素间的相对次序，它可以突破基于比较排序的时间下界，以线性时间运行，因此也称为线性时间非比较类排序。">
 <meta property="og:locale" content="en">
+<meta property="og:updated_time" content="2019-10-24T12:38:12.623Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="硕硕的博客">
-<meta name="twitter:description" content="个人技术博客">
+<meta name="twitter:title" content="十大经典排序算法Python实现">
+<meta name="twitter:description" content="排序算法分类常见排序算法可以分为两大类：  比较类排序：通过比较来决定元素间的相对次序，由于其时间复杂度不能突破O(nlogn)，因此也称为非线性时间比较类排序 非比较类排序：不通过比较来决定元素间的相对次序，它可以突破基于比较排序的时间下界，以线性时间运行，因此也称为线性时间非比较类排序。">
   
     <link rel="alternative" href="/atom.xml" title="硕硕的博客" type="application/atom+xml">
   
@@ -180,36 +181,138 @@
           </div>
           <div id="js-content" class="content-ll">
             
+    <i class="fa fa-thumb-tack"></i>
+    <font color=7D26CD>置顶</font>
+    <span class="post-meta-divider">|</span>
   
+<article id="post-第十二篇" class="article article-type-post " itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
   
-    
-    
-      
-      
-      <section class="archives-wrap">
-        <div class="archive-year-wrap">
-          <a href="/archives/2019" class="archive-year">2019</a>
-        </div>
-        <div class="archives">
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2019/10/24/第十二篇/" class="archive-article-date">
-  	<time datetime="2019-10-24T10:00:59.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-10-24</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2019/10/24/第十二篇/">十大经典排序算法Python实现</a>
+    <h1 class="article-title" itemprop="name">
+      十大经典排序算法Python实现
     </h1>
   
 
-        <div class="article-info info-on-right">
-          
-          
+        
+        <a href="/2019/10/24/第十二篇/" class="archive-article-date">
+  	<time datetime="2019-10-24T10:00:59.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-10-24</time>
+</a>
+        
+
+
+
+	
+          <span class="archive-article-date">
+              阅读量 <span id="busuanzi_value_page_pv"></span>
+          </span>
+        
+
+
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="排序算法分类"><a href="#排序算法分类" class="headerlink" title="排序算法分类"></a>排序算法分类</h2><p>常见排序算法可以分为两大类：</p>
+<ol>
+<li>比较类排序：通过比较来决定元素间的相对次序，由于其时间复杂度不能突破O(nlogn)，因此也称为非线性时间比较类排序</li>
+<li>非比较类排序：不通过比较来决定元素间的相对次序，它可以突破基于比较排序的时间下界，以线性时间运行，因此也称为线性时间非比较类排序。     </li>
+</ol>
+<a id="more"></a>
+<h3 id="1-冒泡排序-Bubble-Sort"><a href="#1-冒泡排序-Bubble-Sort" class="headerlink" title="1. 冒泡排序(Bubble Sort)"></a>1. 冒泡排序(Bubble Sort)</h3><p>冒泡排序（Bubble Sort）,是一种计算机科学领域的较简单的排序算法。它重复地走访过要排序的元素列，依次比较两个相邻的元素，如果他们的顺序（如从大到小、首字母从A到Z）错误就把他们交换过来。走访元素的工作是重复地进行直到没有相邻元素需要交换，也就是说该元素列已经排序完成。这个算法的名字由来是因为越大的元素会经由交换慢慢“浮”到数列的顶端（升序或降序排列），就如同碳酸饮料中二氧化碳的气泡最终会上浮到顶端一样，故名“冒泡排序”。</p>
+<h4 id="1-1-算法描述"><a href="#1-1-算法描述" class="headerlink" title="1.1 算法描述"></a>1.1 算法描述</h4><ol>
+<li>比较相邻的元素。如果第一个比第二个大，就交换它们两个     </li>
+<li>对每一对相邻元素做同样的工作，从开始第一对到结尾的最后一对，这样在最后的元素应该是最大的数</li>
+<li>针对所有的元素重复以上的步骤，除了最后一个</li>
+<li>重复步骤1~3，直到排序完成      </li>
+</ol>
+<h4 id="1-2-代码实现"><a href="#1-2-代码实现" class="headerlink" title="1.2 代码实现"></a>1.2 代码实现</h4> <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">bubbleSort</span><span class="params">(a)</span>:</span></span><br><span class="line">	<span class="keyword">for</span> n <span class="keyword">in</span> range(len(a)<span class="number">-1</span>):</span><br><span class="line">		<span class="keyword">for</span> i <span class="keyword">in</span> range(len(a)<span class="number">-1</span>-n):</span><br><span class="line">			j=i+<span class="number">1</span></span><br><span class="line">			<span class="keyword">if</span> a[i]&gt;a[j]:</span><br><span class="line">				temp=a[j]</span><br><span class="line">				a[j]=a[i]</span><br><span class="line">				a[i]=temp</span><br><span class="line">	<span class="keyword">return</span> a</span><br><span class="line">a=[<span class="number">1</span>,<span class="number">4</span>,<span class="number">2</span>,<span class="number">7</span>,<span class="number">2</span>,<span class="number">4</span>,<span class="number">9</span>,<span class="number">3</span>]</span><br><span class="line">a=bubbleSort(a)</span><br><span class="line"><span class="comment">#结果 [1, 2, 2, 3, 4, 4, 7, 9]</span></span><br></pre></td></tr></table></figure>
+
+<h4 id="1-3-复杂度"><a href="#1-3-复杂度" class="headerlink" title="1.3 复杂度"></a>1.3 复杂度</h4><p>冒泡排序在平均和最坏情况下的时间复杂度是O(n^2)，最好情况下是O(n)，空间复杂度是O(1)。</p>
+<h3 id="2-选择排序-Selection-Sort"><a href="#2-选择排序-Selection-Sort" class="headerlink" title="2. 选择排序(Selection Sort)"></a>2. 选择排序(Selection Sort)</h3><p>选择排序是一种简单直观的排序算法。它的工作原理:首先在未排序序列中找到最小元素，存放到排序序列的起始位置，然后，再从剩余未排序元素中继续寻找最小元素，然后放到已排序序列的末尾。以此类推，直到所有元素均排序完毕。 选择排序的主要优点与数据移动有关。如果某个元素位于正确的最终位置上，则它不会被移动。   </p>
+<h4 id="2-1-算法描述"><a href="#2-1-算法描述" class="headerlink" title="2.1 算法描述"></a>2.1 算法描述</h4><p>假如我们待排序的序列有n个元素，则经过n-1次选择排序后我们会得到有序的结果。具体算法描述如下：   </p>
+<ol>
+<li>初始状态：无序区为a[1…n],有序区为空</li>
+<li>第一趟排序，遍历整个序列，找到最小的那个元素，将它与第一个元素交换位置，然后从第二个元素开始，继续选择排序</li>
+<li>第i趟排序(i=1,2,3…n-1)开始时，当前有序区和无序区分别为a[1..i-1]和a[i..n]。该趟排序从当前无序区中选出最小的元素 a[k]，将它与无序区的第1个元素交换，使a[1..i]和a[i+1..n]分别变为记录个数增加1个的新有序区和记录个数减少1个的新无序区</li>
+<li>n-1趟后，序列就有序化了 </li>
+</ol>
+<h4 id="2-2-代码实现"><a href="#2-2-代码实现" class="headerlink" title="2.2 代码实现"></a>2.2 代码实现</h4><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">selectionSort</span><span class="params">(a)</span>:</span></span><br><span class="line">	<span class="keyword">for</span> i <span class="keyword">in</span> range(len(a)<span class="number">-1</span>):</span><br><span class="line">		minIndex=i</span><br><span class="line">		<span class="keyword">for</span> j <span class="keyword">in</span> range(i+<span class="number">1</span>,len(a)):</span><br><span class="line">		   <span class="keyword">if</span> a[minIndex]&gt;a[j]:</span><br><span class="line">		   	   minIndex=j</span><br><span class="line">		temp=a[minIndex]</span><br><span class="line">		a[minIndex]=a[i]</span><br><span class="line">		a[i]=temp</span><br><span class="line">	<span class="keyword">return</span> a</span><br><span class="line">print(selectionSort(a))</span><br></pre></td></tr></table></figure>
+
+<h4 id="2-3-复杂度"><a href="#2-3-复杂度" class="headerlink" title="2.3 复杂度"></a>2.3 复杂度</h4><p>选择排序的时间复杂度是$O(N^2)$：假设被排序的数列中有N个数。遍历一趟的时间复杂度是O(N)，需要遍历N-1次,因此，选择排序的时间复杂度是$O(N^2)$ 。  </p>
+<h3 id="3-插入排序（Insertion-Sort）"><a href="#3-插入排序（Insertion-Sort）" class="headerlink" title="3. 插入排序（Insertion Sort）"></a>3. 插入排序（Insertion Sort）</h3><p>插入排序（Insertion-Sort）的算法描述是一种简单直观的排序算法。它的工作原理是通过构建有序序列，对于未排序数据，在已排序序列中从后向前扫描，找到相应位置并插入。</p>
+<h4 id="3-1-算法描述"><a href="#3-1-算法描述" class="headerlink" title="3.1 算法描述"></a>3.1 算法描述</h4><ol>
+<li>从第一个元素开始，该元素可以认为已经被排序</li>
+<li>取出下一个元素，在已经排序的元素序列中从后向前扫描</li>
+<li>如果该元素（已排序）大于新元素，将该元素移到下一位置</li>
+<li>重复步骤3，直到找到已排序的元素小于或者等于新元素的位置</li>
+<li>将新元素插入到该位置后</li>
+<li>重复步骤2~5    </li>
+</ol>
+<h4 id="3-2-代码实现"><a href="#3-2-代码实现" class="headerlink" title="3.2 代码实现"></a>3.2 代码实现</h4><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">insertionSort</span><span class="params">(a)</span>:</span></span><br><span class="line">	<span class="keyword">for</span> i <span class="keyword">in</span> range(<span class="number">1</span>,len(a)):</span><br><span class="line">		preIndex=i<span class="number">-1</span></span><br><span class="line">		current=a[i]</span><br><span class="line">		<span class="keyword">while</span> preIndex&gt;=<span class="number">0</span> <span class="keyword">and</span> a[preIndex]&gt;current:</span><br><span class="line">			a[preIndex+<span class="number">1</span>]=a[preIndex]</span><br><span class="line">			preIndex-=<span class="number">1</span></span><br><span class="line">		a[preIndex+<span class="number">1</span>]=current</span><br><span class="line">	<span class="keyword">return</span> a</span><br><span class="line">print(insertionSort(a))</span><br></pre></td></tr></table></figure>
+
+<h4 id="3-3-复杂度"><a href="#3-3-复杂度" class="headerlink" title="3.3 复杂度"></a>3.3 复杂度</h4><p>最好情况下，插入排序的时间复杂度为O(N),最坏情况下的复杂度为 O(N^2)，平均复杂度 O(N^2)。</p>
+<h3 id="4-希尔排序（Shell-Sort）"><a href="#4-希尔排序（Shell-Sort）" class="headerlink" title="4. 希尔排序（Shell Sort）"></a>4. 希尔排序（Shell Sort）</h3><p>希尔排序也是一种插入排序，它是简单插入排序经过改进之后的一个更高效的版本，也称为缩小增量排序。简单插入排序很循规蹈矩，不管数组分布是怎么样的，依然一步一步的对元素进行比较，移动，插入，比如[5,4,3,2,1,0]这种倒序序列，数组末端的0要回到首位置很是费劲，比较和移动元素均需n-1次。而希尔排序在数组中采用跳跃式分组的策略，把序列按下标的一定增量分组，对每组使用直接插入排序算法排序，随着增量逐渐减少，每组包含的元素越来越多，当增量减至1时，整个序列恰被分成一组，算法便终止。希尔排序通过这种策略使得整个数组在初始阶段达到从宏观上看基本有序，小的基本在前，大的基本在后。然后缩小增量，到增量为1时，其实多数情况下只需微调即可，不会涉及过多的数据移动。</p>
+<h4 id="4-1-实现步骤"><a href="#4-1-实现步骤" class="headerlink" title="4.1 实现步骤"></a>4.1 实现步骤</h4><ol>
+<li>选择一个增量序列gap_1，…，gap_k，其中gap_k=1，一般选取gap_1=length/2,缩小增量以gap = gap/2的方式进行，直到gap_k=1</li>
+<li>按增量序列个数k，对序列进行k 趟排序</li>
+<li>每趟排序，根据对应的增量gap_i，将待排序列分割成若干长度为length/gap_i 的子序列，分别对各子序列进行直接插入排序。当增量因子为1 时，整个序列作为一个序列来处理。    </li>
+</ol>
+<h4 id="4-2-代码实现"><a href="#4-2-代码实现" class="headerlink" title="4.2 代码实现"></a>4.2 代码实现</h4><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">shellSort</span><span class="params">(a)</span>:</span></span><br><span class="line">	gap=len(a)//<span class="number">2</span></span><br><span class="line">	<span class="keyword">while</span> gap&gt;<span class="number">0</span>:</span><br><span class="line">		<span class="keyword">for</span> i <span class="keyword">in</span> range(gap,len(a)):</span><br><span class="line">			j=i</span><br><span class="line">			current=a[i]</span><br><span class="line">			<span class="keyword">while</span> j-gap&gt;=<span class="number">0</span> <span class="keyword">and</span> current&lt; a[j-gap]:</span><br><span class="line">				a[j]=a[j-gap]</span><br><span class="line">				j-=gap</span><br><span class="line">			a[j]=current</span><br><span class="line">		gap=gap//<span class="number">2</span></span><br><span class="line">	<span class="keyword">return</span> a</span><br><span class="line">print(shellSort(a))</span><br></pre></td></tr></table></figure>
+
+<h4 id="4-3-复杂度"><a href="#4-3-复杂度" class="headerlink" title="4.3 复杂度"></a>4.3 复杂度</h4><p>最坏复杂度O(N^2),最好复杂度O(N)，平均时间复杂度O(N^1.3)</p>
+<h3 id="5-归并排序（Merge-Sort）"><a href="#5-归并排序（Merge-Sort）" class="headerlink" title="5. 归并排序（Merge Sort）"></a>5. 归并排序（Merge Sort）</h3><p>归并排序是建立在归并操作上的一种有效的排序算法,该算法是采用分治法（Divide and Conquer）的一个非常典型的应用。将已有序的子序列合并，得到完全有序的序列；即先使每个子序列有序，再使子序列段间有序。</p>
+<h4 id="5-1-算法描述"><a href="#5-1-算法描述" class="headerlink" title="5.1 算法描述"></a>5.1 算法描述</h4><ol>
+<li>把长度为n的输入序列分成两个长度为n/2的子序列</li>
+<li>对这两个子序列分别采用归并排序</li>
+<li>将两个排序好的子序列合并成一个最终的排序序列   </li>
+</ol>
+<h4 id="5-2-代码实现"><a href="#5-2-代码实现" class="headerlink" title="5.2 代码实现"></a>5.2 代码实现</h4><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">mergeSort</span><span class="params">(a)</span>:</span></span><br><span class="line">	<span class="keyword">if</span> len(a)&lt;=<span class="number">1</span>:</span><br><span class="line">		<span class="keyword">return</span> a</span><br><span class="line">	mid=len(a)//<span class="number">2</span></span><br><span class="line">	left=mergeSort(a[:mid])</span><br><span class="line">	right=mergeSort(a[mid:])</span><br><span class="line">	<span class="keyword">return</span> merge(left,right)</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">merge</span><span class="params">(left,right)</span>:</span></span><br><span class="line">	n=len(left)</span><br><span class="line">	m=len(right)</span><br><span class="line">	i=<span class="number">0</span></span><br><span class="line">	j=<span class="number">0</span></span><br><span class="line">	result=[]</span><br><span class="line">	<span class="keyword">while</span> i&lt;n <span class="keyword">and</span> j&lt;m:</span><br><span class="line">		<span class="keyword">if</span> left[i]&lt;=right[j]:</span><br><span class="line">			result.append(left[i])</span><br><span class="line">			i+=<span class="number">1</span></span><br><span class="line">		<span class="keyword">else</span>:</span><br><span class="line">			result.append(right[j])</span><br><span class="line">			j+=<span class="number">1</span></span><br><span class="line">	result+=left[i:]</span><br><span class="line">	result+=right[j:]</span><br><span class="line">	<span class="keyword">return</span> result</span><br><span class="line"></span><br><span class="line">print(mergeSort(a))</span><br></pre></td></tr></table></figure>
+
+<h4 id="5-3-复杂度"><a href="#5-3-复杂度" class="headerlink" title="5.3 复杂度"></a>5.3 复杂度</h4><p>最坏时间复杂度O(NlogN),最好时间复杂度O(NlogN)，平均时间复杂度O(N^logN)，空间复杂度O(N)</p>
+
+      
+
+      
+        <div class="page-reward">
+          <a href="javascript:;" class="page-reward-btn tooltip-top">
+            <div class="tooltip tooltip-east">
+            <span class="tooltip-item">
+              赏
+            </span>
+            <span class="tooltip-content">
+              <span class="tooltip-text">
+                <span class="tooltip-inner">
+                  <p class="reward-p"><i class="icon icon-quo-left"></i>谢谢你请我吃糖果<i class="icon icon-quo-right"></i></p>
+                  <div class="reward-box">
+                    
+                    
+                    <div class="reward-box-item">
+                      <img class="reward-img" src="/assets/img/weixin.jpg">
+                      <span class="reward-type">微信</span>
+                    </div>
+                    
+                  </div>
+                </span>
+              </span>
+            </span>
+          </div>
+          </a>
+        </div>
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+        <div class="article-pop-out tagcloud">
+          <i class="icon-tuding"></i>
+          <a class="article-tag-list-link color3">置顶</a>
+        </div>
+      
+      
+      
 	<div class="article-category tagcloud">
 		<i class="icon-book icon"></i>
 		<ul class="article-tag-list">
@@ -222,362 +325,116 @@
 	</div>
 
 
+      
+
+      
+        
+<div class="share-btn share-icons tooltip-left">
+  <div class="tooltip tooltip-east">
+    <span class="tooltip-item">
+      <a href="javascript:;" class="share-sns share-outer">
+        <i class="icon icon-share"></i>
+      </a>
+    </span>
+    <span class="tooltip-content">
+      <div class="share-wrap">
+        <div class="share-icons">
+          <a class="weibo share-sns" href="javascript:;" data-type="weibo">
+            <i class="icon icon-weibo"></i>
+          </a>
+          <a class="weixin share-sns wxFab" href="javascript:;" data-type="weixin">
+            <i class="icon icon-weixin"></i>
+          </a>
+          <a class="qq share-sns" href="javascript:;" data-type="qq">
+            <i class="icon icon-qq"></i>
+          </a>
+          <a class="douban share-sns" href="javascript:;" data-type="douban">
+            <i class="icon icon-douban"></i>
+          </a>
+          <a class="qzone share-sns" href="javascript:;" data-type="qzone">
+            <i class="icon icon-qzone"></i>
+          </a>
+          <a class="facebook share-sns" href="javascript:;" data-type="facebook">
+            <i class="icon icon-facebook"></i>
+          </a>
+          <a class="twitter share-sns" href="javascript:;" data-type="twitter">
+            <i class="icon icon-twitter"></i>
+          </a>
+          <a class="google share-sns" href="javascript:;" data-type="google">
+            <i class="icon icon-google"></i>
+          </a>
         </div>
-        <div class="clearfix"></div>
-    </header>
+      </div>
+    </span>
+  </div>
+</div>
+
+<div class="page-modal wx-share js-wx-box">
+    <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <div class="wx-qrcode">
+      <img src="//api.qrserver.com/v1/create-qr-code/?size=150x150&data=https://shuocheng1216.github.io/2019/10/24/第十二篇/" alt="微信分享二维码">
+    </div>
+</div>
+
+<div class="mask js-mask"></div>
+      
+      <div class="clearfix"></div>
+    </div>
   </div>
 </article>
+
   
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2019/10/23/第十一篇/" class="archive-article-date">
-  	<time datetime="2019-10-23T08:26:57.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-10-23</time>
-</a>
+<nav id="article-nav">
+  
+  
+    <a href="/2019/10/23/第十一篇/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">TensorFlow的使用(2)</div>
+      <i class="icon-circle-right"></i>
+    </a>
+  
+</nav>
+
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
         </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2019/10/23/第十一篇/">TensorFlow的使用(2)</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-          
-	<div class="article-category tagcloud">
-		<i class="icon-book icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="/categories/tensorflow//" class="article-tag-list-link color1">tensorflow</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-
+        
+        
+        <div class="toc-container tooltip-left">
+            <i class="icon-font icon-category"></i>
+            <div class="tooltip tooltip-east">
+                <span class="tooltip-item">
+                </span>
+                <span class="tooltip-content">
+                    <div class="toc-article">
+                    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#排序算法分类"><span class="toc-number">1.</span> <span class="toc-text">排序算法分类</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-冒泡排序-Bubble-Sort"><span class="toc-number">1.1.</span> <span class="toc-text">1. 冒泡排序(Bubble Sort)</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#1-1-算法描述"><span class="toc-number">1.1.1.</span> <span class="toc-text">1.1 算法描述</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#1-2-代码实现"><span class="toc-number">1.1.2.</span> <span class="toc-text">1.2 代码实现</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#1-3-复杂度"><span class="toc-number">1.1.3.</span> <span class="toc-text">1.3 复杂度</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-选择排序-Selection-Sort"><span class="toc-number">1.2.</span> <span class="toc-text">2. 选择排序(Selection Sort)</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#2-1-算法描述"><span class="toc-number">1.2.1.</span> <span class="toc-text">2.1 算法描述</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#2-2-代码实现"><span class="toc-number">1.2.2.</span> <span class="toc-text">2.2 代码实现</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#2-3-复杂度"><span class="toc-number">1.2.3.</span> <span class="toc-text">2.3 复杂度</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-插入排序（Insertion-Sort）"><span class="toc-number">1.3.</span> <span class="toc-text">3. 插入排序（Insertion Sort）</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#3-1-算法描述"><span class="toc-number">1.3.1.</span> <span class="toc-text">3.1 算法描述</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#3-2-代码实现"><span class="toc-number">1.3.2.</span> <span class="toc-text">3.2 代码实现</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#3-3-复杂度"><span class="toc-number">1.3.3.</span> <span class="toc-text">3.3 复杂度</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-希尔排序（Shell-Sort）"><span class="toc-number">1.4.</span> <span class="toc-text">4. 希尔排序（Shell Sort）</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#4-1-实现步骤"><span class="toc-number">1.4.1.</span> <span class="toc-text">4.1 实现步骤</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#4-2-代码实现"><span class="toc-number">1.4.2.</span> <span class="toc-text">4.2 代码实现</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#4-3-复杂度"><span class="toc-number">1.4.3.</span> <span class="toc-text">4.3 复杂度</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#5-归并排序（Merge-Sort）"><span class="toc-number">1.5.</span> <span class="toc-text">5. 归并排序（Merge Sort）</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#5-1-算法描述"><span class="toc-number">1.5.1.</span> <span class="toc-text">5.1 算法描述</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#5-2-代码实现"><span class="toc-number">1.5.2.</span> <span class="toc-text">5.2 代码实现</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#5-3-复杂度"><span class="toc-number">1.5.3.</span> <span class="toc-text">5.3 复杂度</span></a></li></ol></li></ol></li></ol>
+                    </div>
+                </span>
+            </div>
         </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2019/10/22/第十篇/" class="archive-article-date">
-  	<time datetime="2019-10-22T19:27:49.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-10-22</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2019/10/22/第十篇/">Tensorflow的使用(1)</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-          
-	<div class="article-category tagcloud">
-		<i class="icon-book icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="/categories/tensorflow//" class="article-tag-list-link color1">tensorflow</a>
-        		</li>
-      		
-		</ul>
-	</div>
+        
+    </div>
+</aside>
 
 
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
+
   
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2019/10/21/第九篇/" class="archive-article-date">
-  	<time datetime="2019-10-21T21:09:52.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-10-21</time>
-</a>
-        </div>
-    	 
   
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2019/10/21/第九篇/">路径规划之A*算法</a>
-    </h1>
   
 
-        <div class="article-info info-on-right">
-          
-          
-	<div class="article-category tagcloud">
-		<i class="icon-book icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="/categories/机器人//" class="article-tag-list-link color4">机器人</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2019/10/17/第八篇/" class="archive-article-date">
-  	<time datetime="2019-10-17T14:55:42.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-10-17</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2019/10/17/第八篇/">基于模型预测控制(MPC)实现轨迹追踪</a>
-    </h1>
   
 
-        <div class="article-info info-on-right">
-          
-          
-	<div class="article-category tagcloud">
-		<i class="icon-book icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="/categories/机器人//" class="article-tag-list-link color4">机器人</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2019/10/16/第七篇/" class="archive-article-date">
-  	<time datetime="2019-10-16T10:38:50.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-10-16</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2019/10/16/第七篇/">LQR横向控制算法</a>
-    </h1>
   
 
-        <div class="article-info info-on-right">
-          
-          
-	<div class="article-category tagcloud">
-		<i class="icon-book icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="/categories/机器人//" class="article-tag-list-link color4">机器人</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2019/10/14/第五篇-1/" class="archive-article-date">
-  	<time datetime="2019-10-14T17:19:09.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-10-14</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2019/10/14/第五篇-1/">路径追踪之Stanley控制</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-          
-	<div class="article-category tagcloud">
-		<i class="icon-book icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="/categories/机器人//" class="article-tag-list-link color4">机器人</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2019/10/13/第五篇/" class="archive-article-date">
-  	<time datetime="2019-10-13T21:02:21.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-10-13</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2019/10/13/第五篇/">路径追踪之Pure Pursuit</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-          
-	<div class="article-category tagcloud">
-		<i class="icon-book icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="/categories/机器人//" class="article-tag-list-link color4">机器人</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2019/10/12/第三篇/" class="archive-article-date">
-  	<time datetime="2019-10-12T11:42:22.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-10-12</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2019/10/12/第三篇/">机器人局部避障的动态窗口法(DWA)</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-          
-	<div class="article-category tagcloud">
-		<i class="icon-book icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="/categories/机器人//" class="article-tag-list-link color4">机器人</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2019/10/11/第二篇/" class="archive-article-date">
-  	<time datetime="2019-10-11T18:06:14.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-10-11</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2019/10/11/第二篇/">Advance C++:const</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-          
-	<div class="article-category tagcloud">
-		<i class="icon-book icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="/categories/C//" class="article-tag-list-link color4">C++</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-  
-    </div></section>
-  
-
-    
-    <nav id="page-nav">
-      <span class="page-number current">1</span><a class="page-number" href="/archives/page/2/">2</a><a class="extend next" rel="next" href="/archives/page/2/">Next &raquo;</a>
-    </nav>
   
 
 
@@ -613,8 +470,8 @@
 	var yiliaConfig = {
 		mathjax: true,
 		isHome: false,
-		isPost: false,
-		isArchive: true,
+		isPost: true,
+		isArchive: false,
 		isTag: false,
 		isCategory: false,
 		open_in_new: false,
