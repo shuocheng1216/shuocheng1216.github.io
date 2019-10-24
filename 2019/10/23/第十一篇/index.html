@@ -8,20 +8,20 @@
   <link rel="dns-prefetch" href="http://yoursite.com">
   <title>TensorFlow的使用(2) | 硕硕的博客</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="今天我们用tensorflow建立一个神经网络 123456789101112131415161718192021222324252627282930313233343536373839404142#首先定义一个添加层import tensorflow as tfimport numpy as npdef add_layer(inputs,in_size,out_size,activation_f">
+  <meta name="description" content="今天我们用tensorflow建立一个神经网络">
 <meta name="keywords" content="无人驾驶，机器人，C++，Python，ROS，控制理论">
 <meta property="og:type" content="article">
 <meta property="og:title" content="TensorFlow的使用(2)">
 <meta property="og:url" content="http://yoursite.com/2019/10/23/第十一篇/index.html">
 <meta property="og:site_name" content="硕硕的博客">
-<meta property="og:description" content="今天我们用tensorflow建立一个神经网络 123456789101112131415161718192021222324252627282930313233343536373839404142#首先定义一个添加层import tensorflow as tfimport numpy as npdef add_layer(inputs,in_size,out_size,activation_f">
+<meta property="og:description" content="今天我们用tensorflow建立一个神经网络">
 <meta property="og:locale" content="en">
 <meta property="og:image" content="http://yoursite.com/images/ten.png">
 <meta property="og:image" content="http://yoursite.com/images/plt.png">
-<meta property="og:updated_time" content="2019-10-23T10:31:06.168Z">
+<meta property="og:updated_time" content="2019-10-24T16:10:40.518Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="TensorFlow的使用(2)">
-<meta name="twitter:description" content="今天我们用tensorflow建立一个神经网络 123456789101112131415161718192021222324252627282930313233343536373839404142#首先定义一个添加层import tensorflow as tfimport numpy as npdef add_layer(inputs,in_size,out_size,activation_f">
+<meta name="twitter:description" content="今天我们用tensorflow建立一个神经网络">
 <meta name="twitter:image" content="http://yoursite.com/images/ten.png">
   
     <link rel="alternative" href="/atom.xml" title="硕硕的博客" type="application/atom+xml">
@@ -220,6 +220,7 @@
     <div class="article-entry" itemprop="articleBody">
       
         <p>今天我们用tensorflow建立一个神经网络</p>
+<a id="more"></a>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#首先定义一个添加层</span></span><br><span class="line"><span class="keyword">import</span> tensorflow <span class="keyword">as</span> tf</span><br><span class="line"><span class="keyword">import</span> numpy <span class="keyword">as</span> np</span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">add_layer</span><span class="params">(inputs,in_size,out_size,activation_function=None)</span>:</span></span><br><span class="line">    Weights=tf.Variable(tf.random_normal([in_size,out_size]))</span><br><span class="line">    biases=tf.Variable(tf.zeros([<span class="number">1</span>,out_size])+<span class="number">0.1</span>)</span><br><span class="line">    Wx_plus_b=tf.matmul(inputs,Weights)+biases</span><br><span class="line">    <span class="keyword">if</span> activation_function <span class="keyword">is</span> <span class="literal">None</span>:</span><br><span class="line">        outputs=Wx_plus_b</span><br><span class="line">    <span class="keyword">else</span>:</span><br><span class="line">        outputs=activation_function(Wx_plus_b)</span><br><span class="line">    <span class="keyword">return</span> outputs <span class="comment">#返回新添加层的输出</span></span><br><span class="line"><span class="comment">#创造一些真实数据</span></span><br><span class="line">x_data=np.linspace(<span class="number">-1</span>,<span class="number">1</span>,<span class="number">300</span>)[:,np.newaxis]<span class="comment">#增加一维，使之前的一行变成一列</span></span><br><span class="line">noise=np.random.normal(<span class="number">0</span>,<span class="number">0.05</span>,x_data.shape) <span class="comment">#添加一些噪声</span></span><br><span class="line">y_data=np.square(x_data)+<span class="number">1</span>+noise</span><br><span class="line"></span><br><span class="line"><span class="comment">#定义placeholder用于向网络输入数据</span></span><br><span class="line">xs=tf.placeholder(tf.float32,[<span class="literal">None</span>,<span class="number">1</span>])</span><br><span class="line">ys=tf.placeholder(tf.float32,[<span class="literal">None</span>,<span class="number">1</span>])</span><br><span class="line"></span><br><span class="line"><span class="comment">#添加隐藏层</span></span><br><span class="line">l1=add_layer(xs,<span class="number">1</span>,<span class="number">10</span>,activation_function=tf.nn.relu)</span><br><span class="line"><span class="comment">#添加输出层</span></span><br><span class="line">prediction=add_layer(l1,<span class="number">10</span>,<span class="number">1</span>,activation_function=<span class="literal">None</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment">#计算预测值和真实值之间的差</span></span><br><span class="line">loss=tf.reduce_mean(tf.reduce_sum(tf.square(ys-prediction),reduction_indices=<span class="number">1</span>))</span><br><span class="line"><span class="comment">#进行训练</span></span><br><span class="line">train_step=tf.train.GradientDescentOptimizer(<span class="number">0.1</span>).minimize(loss)</span><br><span class="line"></span><br><span class="line"><span class="comment">#初始化</span></span><br><span class="line">init=tf.global_variables_initializer()</span><br><span class="line"></span><br><span class="line">sess=tf.Session()</span><br><span class="line">sess.run(init)</span><br><span class="line"></span><br><span class="line"><span class="comment">#训练</span></span><br><span class="line"><span class="keyword">for</span> i <span class="keyword">in</span> range(<span class="number">1001</span>):</span><br><span class="line">    sess.run(train_step,feed_dict=&#123;xs:x_data,ys:y_data&#125;)</span><br><span class="line">    <span class="keyword">if</span> i%<span class="number">50</span>==<span class="number">0</span>:</span><br><span class="line">        print(sess.run(loss, feed_dict=&#123;xs: x_data, ys: y_data&#125;))</span><br></pre></td></tr></table></figure>
 
 <p>结果：<br><img src="/images/ten.png" alt><br>可以看出误差loss已经变得非常小<br>我们对结果可视化一下：</p>
@@ -344,7 +345,7 @@
       <i class="icon-circle-left"></i>
       <div class="article-nav-title">
         
-          十大经典排序算法Python实现
+          十大经典排序算法Python实现(1)
         
       </div>
     </a>

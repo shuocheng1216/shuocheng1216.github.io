@@ -181,6 +181,95 @@
           <div id="js-content" class="content-ll">
             
   
+    <article id="post-第十三篇" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2019/10/24/第十三篇/">十大经典排序算法Python实现(2)</a>
+    </h1>
+  
+
+        
+        <a href="/2019/10/24/第十三篇/" class="archive-article-date">
+  	<time datetime="2019-10-24T16:12:10.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-10-24</time>
+</a>
+        
+
+
+
+	
+
+
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>今天接着看另外五种经典的排序算法</p>
+<h3 id="6-快速排序（Quick-Sort）"><a href="#6-快速排序（Quick-Sort）" class="headerlink" title="6. 快速排序（Quick Sort）"></a>6. 快速排序（Quick Sort）</h3><p>快速排序的基本思想：通过一趟排序将待排序列分隔成独立的两部分，其中一部分序列的元素均比另一部分元素小，则可分别对这两部分序列继续进行排序，以达到整个序列有序</p>
+        
+          <a class="article-more-a" href="/2019/10/24/第十三篇/#more">more >></a>
+        
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+        <div class="article-pop-out tagcloud">
+          <i class="icon-tuding"></i>
+          <a class="article-tag-list-link color3">置顶</a>
+        </div>
+      
+      
+      
+	<div class="article-category tagcloud">
+		<i class="icon-book icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="/categories/算法//" class="article-tag-list-link color3">算法</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2019/10/24/第十三篇/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
     <article id="post-第十二篇" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
@@ -188,7 +277,7 @@
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/2019/10/24/第十二篇/">十大经典排序算法Python实现</a>
+      <a class="article-title" href="/2019/10/24/第十二篇/">十大经典排序算法Python实现(1)</a>
     </h1>
   
 
@@ -301,13 +390,9 @@
     <div class="article-entry" itemprop="articleBody">
       
         <p>今天我们用tensorflow建立一个神经网络</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#首先定义一个添加层</span></span><br><span class="line"><span class="keyword">import</span> tensorflow <span class="keyword">as</span> tf</span><br><span class="line"><span class="keyword">import</span> numpy <span class="keyword">as</span> np</span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">add_layer</span><span class="params">(inputs,in_size,out_size,activation_function=None)</span>:</span></span><br><span class="line">    Weights=tf.Variable(tf.random_normal([in_size,out_size]))</span><br><span class="line">    biases=tf.Variable(tf.zeros([<span class="number">1</span>,out_size])+<span class="number">0.1</span>)</span><br><span class="line">    Wx_plus_b=tf.matmul(inputs,Weights)+biases</span><br><span class="line">    <span class="keyword">if</span> activation_function <span class="keyword">is</span> <span class="literal">None</span>:</span><br><span class="line">        outputs=Wx_plus_b</span><br><span class="line">    <span class="keyword">else</span>:</span><br><span class="line">        outputs=activation_function(Wx_plus_b)</span><br><span class="line">    <span class="keyword">return</span> outputs <span class="comment">#返回新添加层的输出</span></span><br><span class="line"><span class="comment">#创造一些真实数据</span></span><br><span class="line">x_data=np.linspace(<span class="number">-1</span>,<span class="number">1</span>,<span class="number">300</span>)[:,np.newaxis]<span class="comment">#增加一维，使之前的一行变成一列</span></span><br><span class="line">noise=np.random.normal(<span class="number">0</span>,<span class="number">0.05</span>,x_data.shape) <span class="comment">#添加一些噪声</span></span><br><span class="line">y_data=np.square(x_data)+<span class="number">1</span>+noise</span><br><span class="line"></span><br><span class="line"><span class="comment">#定义placeholder用于向网络输入数据</span></span><br><span class="line">xs=tf.placeholder(tf.float32,[<span class="literal">None</span>,<span class="number">1</span>])</span><br><span class="line">ys=tf.placeholder(tf.float32,[<span class="literal">None</span>,<span class="number">1</span>])</span><br><span class="line"></span><br><span class="line"><span class="comment">#添加隐藏层</span></span><br><span class="line">l1=add_layer(xs,<span class="number">1</span>,<span class="number">10</span>,activation_function=tf.nn.relu)</span><br><span class="line"><span class="comment">#添加输出层</span></span><br><span class="line">prediction=add_layer(l1,<span class="number">10</span>,<span class="number">1</span>,activation_function=<span class="literal">None</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment">#计算预测值和真实值之间的差</span></span><br><span class="line">loss=tf.reduce_mean(tf.reduce_sum(tf.square(ys-prediction),reduction_indices=<span class="number">1</span>))</span><br><span class="line"><span class="comment">#进行训练</span></span><br><span class="line">train_step=tf.train.GradientDescentOptimizer(<span class="number">0.1</span>).minimize(loss)</span><br><span class="line"></span><br><span class="line"><span class="comment">#初始化</span></span><br><span class="line">init=tf.global_variables_initializer()</span><br><span class="line"></span><br><span class="line">sess=tf.Session()</span><br><span class="line">sess.run(init)</span><br><span class="line"></span><br><span class="line"><span class="comment">#训练</span></span><br><span class="line"><span class="keyword">for</span> i <span class="keyword">in</span> range(<span class="number">1001</span>):</span><br><span class="line">    sess.run(train_step,feed_dict=&#123;xs:x_data,ys:y_data&#125;)</span><br><span class="line">    <span class="keyword">if</span> i%<span class="number">50</span>==<span class="number">0</span>:</span><br><span class="line">        print(sess.run(loss, feed_dict=&#123;xs: x_data, ys: y_data&#125;))</span><br></pre></td></tr></table></figure>
-
-<p>结果：<br><img src="/images/ten.png" alt><br>可以看出误差loss已经变得非常小<br>我们对结果可视化一下：</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#添加下面的代码</span></span><br><span class="line"><span class="keyword">import</span> matplotlib.pyplot <span class="keyword">as</span> plt</span><br><span class="line">fig=plt.figure()</span><br><span class="line">ax=fig.add_subplot(<span class="number">1</span>,<span class="number">1</span>,<span class="number">1</span>)</span><br><span class="line">ax.scatter(x_data,y_data)</span><br><span class="line">plt.ion()</span><br><span class="line">plt.show()</span><br><span class="line"><span class="keyword">for</span> i <span class="keyword">in</span> range(<span class="number">1001</span>):</span><br><span class="line">    sess.run(train_step,feed_dict=&#123;xs:x_data,ys:y_data&#125;)</span><br><span class="line">    <span class="keyword">if</span> i%<span class="number">50</span>==<span class="number">0</span>:</span><br><span class="line">        <span class="keyword">try</span>:</span><br><span class="line">            ax.lines.remove(lines[<span class="number">0</span>])</span><br><span class="line">        <span class="keyword">except</span> Exception:</span><br><span class="line">            <span class="keyword">pass</span></span><br><span class="line">        prediction_value=sess.run(prediction,feed_dict=&#123;xs:x_data&#125;)</span><br><span class="line">        lines=ax.plot(x_data,prediction_value,<span class="string">'r-'</span>,lw=<span class="number">5</span>)</span><br><span class="line">        plt.pause(<span class="number">0.1</span>)</span><br></pre></td></tr></table></figure>
-
-<p>可视化结果：<br><img src="/images/plt.png" alt></p>
-
+        
+          <a class="article-more-a" href="/2019/10/23/第十一篇/#more">more >></a>
+        
       
 
       
@@ -963,94 +1048,6 @@
       
         <p class="article-more-link">
           <a class="article-more-a" href="/2019/10/10/hello-world/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-第三篇" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2019/10/12/第三篇/">机器人局部避障的动态窗口法(DWA)</a>
-    </h1>
-  
-
-        
-        <a href="/2019/10/12/第三篇/" class="archive-article-date">
-  	<time datetime="2019-10-12T11:42:22.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-10-12</time>
-</a>
-        
-
-
-
-	
-
-
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h1 id="DWA算法"><a href="#DWA算法" class="headerlink" title="DWA算法"></a>DWA算法</h1><p>DWA算法全称为dynamic window approach，是一种应用机器人局部路径规划的算法。其原理主要是在速度空间（v,w）中采样多组速度，并模拟这些速度在一定时间内的运动轨迹，再通过一个评价函数，选出最优路径，把最优速度传递给机器人。</p>
-        
-          <a class="article-more-a" href="/2019/10/12/第三篇/#more">more >></a>
-        
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-        <div class="article-pop-out tagcloud">
-          <i class="icon-tuding"></i>
-          <a class="article-tag-list-link color3">置顶</a>
-        </div>
-      
-      
-      
-	<div class="article-category tagcloud">
-		<i class="icon-book icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="/categories/机器人//" class="article-tag-list-link color4">机器人</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2019/10/12/第三篇/">展开全文 >></a>
         </p>
       
 
